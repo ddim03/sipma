@@ -1,3 +1,7 @@
+@php
+use Illuminate\Support\Facades\Vite;
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>SIPMA | Beranda</title>
+    <title>SIPMA | Sistem Informasi Pengumuman dan Arsip</title>
 </head>
 
 <body>
@@ -18,7 +22,7 @@
             <nav>
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="" class="flex items-center">
-                        <img src="img/logo.png" class="h-8 mr-3" alt="sipma" />
+                        <img src="{{ Vite::asset('resources/img/logo.png') }}" class="h-8 mr-3" alt="sipma" />
                         <span
                             class="self-center text-lg font-semibold whitespace-nowrap leading-none">SIPMA<br>POLINEMA</span>
                     </a>
@@ -59,7 +63,7 @@
         </div>
     </header>
     <main class="w-full font-roboto">
-        <section class="min-h-screen bg-[url('http://127.0.0.1:5173/public/img/hero.jpg')] bg-cover bg-center">
+        <section class="min-h-screen bg-[url('../img/hero.jpg')] bg-cover bg-center">
             <div class="w-full h-screen bg-gray-900 bg-opacity-75 flex items-center ">
                 <div class="w-11/12 sm:w-4/5 mx-auto">
                     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16" id="search">
