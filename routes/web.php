@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/admin', function() {
+Route::get('/post-by-category', fn () => view('posts-by-category'))->name('posts-by-category');
+
+Route::get('/admin', function () {
     return view('admin.login');
 });
