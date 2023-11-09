@@ -20,3 +20,16 @@ Route::get('/', function () {
 Route::get('/admin', function() {
     return view('admin.login');
 });
+
+Route::get('/dashboard', function() {
+    return view('dashboard');
+});
+
+Route::get('/pengumuman', function() {
+    return view('pengumuman');
+});
+
+Route::get('/arsip', function() {
+    return view('arsip');
+});
+
