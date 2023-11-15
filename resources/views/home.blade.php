@@ -104,86 +104,20 @@ use Illuminate\Support\Facades\Vite;
                     semua</a>
             </div>
             <div class="w-full grid grid-cols-1 lg:grid-cols-2 mt-5 mb-14 gap-3">
-                <a href="#"
-                    class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 overflow-hidden">
-                    <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                        src="https://dummyimage.com/300x400" alt="">
-                    <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden ">
-                        <span
-                            class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">Akademik</span>
-                        <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">
-                            Lorem ipsum
-                            dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, ducimus.
-                        </h5>
-                        <div class="text-xs text-slate-500 mb-2">From : Dimas Gilang Dwi Aji</div>
-                        <p class="mb-5 font-normal text-gray-700">
-                            Here are the biggest
-                            enterprise
-                            technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                        <div class="flex w-full justify-end text-xs text-slate-500">Published at : Senin, 04 Desember
-                            2023</div>
+            @foreach($posts as $post)
+                <a href="" 
+                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 overflow-hidden">
+                    <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="{{ asset('images/'. $post->banner) }}" alt="{{ $post->title }}">
+                    <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">{{ $post->category->name}}</span>
+                        <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">{{ $post->title }}</h5>
+                        <div class="text-xs text-slate-500 mb-2">From: {{ $post->admin->nama }}</div>
+                        <p class="mb-5 font-normal text-gray-700">{{ $post->excerpt }}</p>
+                        <div class="flex w-full justify-end text-xs text-slate-500">Published at: {{ $post->published_at->format('l, d F Y') }}</div>
                     </div>
                 </a>
-                <a href="#"
-                    class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 overflow-hidden">
-                    <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                        src="https://dummyimage.com/300x400" alt="">
-                    <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden ">
-                        <span
-                            class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">Akademik</span>
-                        <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">
-                            Lorem ipsum
-                            dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, ducimus.
-                        </h5>
-                        <div class="text-xs text-slate-500 mb-2">From : Dimas Gilang Dwi Aji</div>
-                        <p class="mb-5 font-normal text-gray-700">
-                            Here are the biggest
-                            enterprise
-                            technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                        <div class="flex w-full justify-end text-xs text-slate-500">Published at : Senin, 04 Desember
-                            2023</div>
-                    </div>
-                </a>
-                <a href="#"
-                    class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 overflow-hidden">
-                    <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                        src="https://dummyimage.com/300x400" alt="">
-                    <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden ">
-                        <span
-                            class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">Akademik</span>
-                        <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">
-                            Lorem ipsum
-                            dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, ducimus.
-                        </h5>
-                        <div class="text-xs text-slate-500 mb-2">From : Dimas Gilang Dwi Aji</div>
-                        <p class="mb-5 font-normal text-gray-700">
-                            Here are the biggest
-                            enterprise
-                            technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                        <div class="flex w-full justify-end text-xs text-slate-500">Published at : Senin, 04 Desember
-                            2023</div>
-                    </div>
-                </a>
-                <a href="#"
-                    class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 overflow-hidden">
-                    <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                        src="https://dummyimage.com/300x400" alt="">
-                    <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden ">
-                        <span
-                            class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">Akademik</span>
-                        <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">
-                            Lorem ipsum
-                            dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, ducimus.
-                        </h5>
-                        <div class="text-xs text-slate-500 mb-2">From : Dimas Gilang Dwi Aji</div>
-                        <p class="mb-5 font-normal text-gray-700">
-                            Here are the biggest
-                            enterprise
-                            technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                        <div class="flex w-full justify-end text-xs text-slate-500">Published at : Senin, 04 Desember
-                            2023</div>
-                    </div>
-                </a>
+              
+                @endforeach
             </div>
         </section>
     </main>
