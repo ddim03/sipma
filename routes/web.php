@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,5 @@ Route::get('/post-by-category', fn () => view('posts-by-category'))->name('posts
 Route::get('/admin', function () {
     return view('admin.login');
 });
+
+Route::get('/', [PostController::class, 'index']);
