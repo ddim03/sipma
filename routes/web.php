@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +16,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('homenew');
+    return view('home');
 });
 
-Route::get('/admin', function() {
+Route::get('/post-by-category', fn () => view('posts-by-category'))->name('posts-by-category');
+
+Route::get('/admin', function () {
     return view('admin.login');
 });
 
-Route::get('/login', function() {
-    return view('login');
+Route::get('/dashboard', function() {
+    return view('dashboard');
 });
+
+Route::get('/pengumuman', function() {
+    return view('pengumuman');
+});
+
+Route::get('/arsip', function() {
+    return view('arsip');
+});
+
+Route::get('/', [PostController::class, 'index']);

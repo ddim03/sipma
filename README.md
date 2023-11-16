@@ -45,7 +45,7 @@ Generate application key
 Start the server
 
 ```bash
-  pnpm run dev
+  pnpm dev
 ```
 
 ```bash
