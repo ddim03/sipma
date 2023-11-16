@@ -37,4 +37,8 @@ Route::get('/arsip', function() {
     return view('arsip');
 });
 
+Route::get('/login', function() {
+    return view('login');
+});
+
 Route::get('/', [PostController::class, 'index']);
