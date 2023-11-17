@@ -13,9 +13,9 @@ class Post extends Model
         'admin_id',
         'title',
         'slug',
-        'excerpt',
         'banner',
-        'body',
+        'deskripsi',
+        'is_validated',
         'published_at',
     ];
     // Relasi ke tabel Category
