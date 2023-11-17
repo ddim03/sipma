@@ -36,5 +36,6 @@ Route::get('/pengumuman', function() {
 Route::get('/arsip', function() {
     return view('arsip');
 });
+Route::get('/{category}', [PostController::class, 'postByCategory'])->name('posts.by.category');
 
 Route::get('/', [PostController::class, 'index']);

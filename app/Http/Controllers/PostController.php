@@ -20,7 +20,29 @@ class PostController extends Controller
 
         return view('home', ['posts' => $posts]);
     }
+    public function postByCategory($category)
+    {
+        // Ambil ID kategori berdasarkan nama kategori
+        $categoryId = Category::where('name', $category)->value('category_id');
+
+        // Validasi apakah kategori ditemukan
+        if (!$categoryId) {
+            abort(404);
+        }
+
+        // Ambil post berdasarkan kategori
+        $posts = Post::where('category_id', $categoryId)
+            ->orderBy('published_at', 'desc')
+            ->get();
+
+        foreach ($posts as $post) {
+            $post->published_at = Carbon::parse($post->published_at);
+        }
+
+        return view('posts-by-category', ['posts' => $posts, 'category' => $category]);
+    }
 }
+
 
 
 
