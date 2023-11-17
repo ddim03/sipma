@@ -29,9 +29,8 @@ Route::get('/dashboard', function() {
     return view('dashboard');
 });
 
-Route::get('/pengumuman', function() {
-    return view('pengumuman');
-});
+Route::get('/pengumuman', [PostController::class, 'pengumuman']);
+
 
 Route::get('/arsip', function() {
     return view('arsip');

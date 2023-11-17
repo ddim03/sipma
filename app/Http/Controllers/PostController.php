@@ -11,14 +11,49 @@ use Carbon\Carbon;
 class PostController extends Controller
 {
     public function index()
+{
+    $posts = Post::where('is_validated', 1)
+        ->orderBy('published_at', 'desc')
+        ->get();
+
+    foreach ($posts as $post) {
+        $post->published_at = Carbon::parse($post->published_at);
+    }
+
+    return view('home', ['posts' => $posts]);
+}
+public function pengumuman()
+{
+    $posts = Post::orderBy('published_at', 'desc')->get();
+
+    foreach ($posts as $post) {
+        $post->published_at = Carbon::parse($post->published_at);
+    }
+
+    return view('pengumuman', ['posts' => $posts]);
+}
+
+public function postByCategory($category)
     {
-        $posts = Post::orderBy('published_at', 'desc')->get();
+        // Ambil ID kategori berdasarkan nama kategori
+        $categoryId = Category::where('name', $category)->value('category_id');
+
+        // Validasi apakah kategori ditemukan
+        if (!$categoryId) {
+            abort(404);
+        }
+
+        // Ambil post berdasarkan kategori
+        $posts = Post::where('category_id', $categoryId)
+        ->where('is_validated', 1)
+            ->orderBy('published_at', 'desc')
+            ->get();
 
         foreach ($posts as $post) {
             $post->published_at = Carbon::parse($post->published_at);
         }
 
-        return view('home', ['posts' => $posts]);
+        return view('posts-by-category', ['posts' => $posts, 'category' => $category]);
     }
 }
 
