@@ -15,26 +15,36 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/akademik', function () {
+    return view('posts-by-category');
 });
 
-Route::get('/post-by-category', fn () => view('posts-by-category'))->name('posts-by-category');
-
-Route::get('/admin', function () {
+Route::get('/login', function () {
     return view('admin.login');
 });
 
-Route::get('/dashboard', function() {
-    return view('dashboard');
-});
-
-Route::get('/pengumuman', function() {
-    return view('pengumuman');
-});
-
-Route::get('/arsip', function() {
-    return view('arsip');
-});
-
 Route::get('/', [PostController::class, 'index']);
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/post/index', function () {
+    return view('admin.posts');
+});
+
+Route::get('/arsip/index', function () {
+    return view('admin.arsip');
+});
+
+Route::get('/post/create', function () {
+    return view('admin.create-post');
+});
+
+Route::get('/post/view', function () {
+    return view('admin.view-post');
+});
+
+Route::get('/post/edit', function () {
+    return view('admin.edit-post');
+});
