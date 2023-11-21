@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,9 +12,9 @@ class Post extends Model
     protected $fillable = [
         'category_id',
         'admin_id',
-        'title',
+        'judul',
         'slug',
-        'banner',
+        'gambar',
         'deskripsi',
         'is_validated',
         'published_at',

@@ -1,8 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-@include('partials.navbar')
-
 <section class="h-80 md:h-96 bg-[url('../img/hero.jpg')] bg-cover bg-center">
     <div class="w-full h-80 md:h-96 bg-gray-900 bg-opacity-75 flex items-center ">
         <div class="w-11/12 sm:w-4/5 mx-auto">
