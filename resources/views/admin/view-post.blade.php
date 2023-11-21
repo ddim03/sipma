@@ -7,7 +7,7 @@
     <div class="p-0 sm:p-4 mt-14">
         <h1 class="text-3xl font-bold text-slate-800 mt-20 sm:mt-0 mb-4">Detail Pengumuman</h1>
         <div class="p-5 bg-white flex flex-col j sm:flex-row rounded-lg border border-gray-200">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-4/5">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 w-4/5">
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Judul</h2>
                     <p class="text-sm text-slate-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -65,6 +65,12 @@
                 </p>
             </div>
         </div>
+    </div>
+    <div class="pl-4">
+        <a href="/post/index" type="submit"
+            class="inline-flex items-center px-5 py-2.5 mt-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800">
+            Kembali
+        </a>
     </div>
 </main>
 @endsection

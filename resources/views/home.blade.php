@@ -36,23 +36,26 @@
             <p class="text-md text-gray-400">Pengumuman yang baru saja dipublikasikan</p>
         </div>
         <a href="#"
-            class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">Lihat
-            semua</a>
+            class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
+            Lihat semua
+        </a>
     </div>
     <div class="w-full grid grid-cols-1 lg:grid-cols-2 mt-5 mb-14 gap-3">
         @foreach($posts as $post)
         <a href=""
-            class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 overflow-hidden">
+            class="flex flex-col items-start bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 overflow-hidden">
             <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                 src="{{ asset('images/'. $post->banner) }}" alt="{{ $post->title }}">
             <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden">
-                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">{{
-                    $post->category->name}}</span>
+                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">
+                    {{ $post->category->name}}
+                </span>
                 <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">{{ $post->title }}</h5>
                 <div class="text-xs text-slate-500 mb-2">From: {{ $post->admin->nama }}</div>
                 <p class="mb-5 font-normal text-gray-700">{{ $post->deskripsi }}</p>
-                <div class="flex w-full justify-end text-xs text-slate-500">Published at: {{
-                    $post->published_at->format('l, d F Y') }}</div>
+                <div class="flex w-full justify-end text-xs text-slate-500">
+                    Published at: {{ $post->published_at->format('l, d F Y') }}
+                </div>
             </div>
         </a>
         @endforeach

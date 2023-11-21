@@ -20,7 +20,7 @@
                     class=" w-full py-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Cari nama arsip">
             </div>
-            <a href="/arsip/create" type="button" data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+            <a href="/arsip/create"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 focus:outline-none flex justify-center items-center">
                 <svg class="w-4 h-4 mr-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 20 20">
@@ -31,7 +31,7 @@
         </div>
         <div class="overflow-x-auto px-4 py-4 bg-white border-l border-r border-gray-200">
             <table class="w-full text-sm text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-200 text-center">
                     <tr>
                         <th scope="col" class="px-4 py-3">
                             No

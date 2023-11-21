@@ -15,11 +15,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/posts-by-category', function () {
+Route::get('/akademik', function () {
     return view('posts-by-category');
 });
 
@@ -33,11 +29,11 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/posts', function () {
+Route::get('/post/index', function () {
     return view('admin.posts');
 });
 
-Route::get('/arsip', function () {
+Route::get('/arsip/index', function () {
     return view('admin.arsip');
 });
 

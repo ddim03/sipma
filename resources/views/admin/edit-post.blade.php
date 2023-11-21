@@ -38,7 +38,7 @@
                                     Upload Gambar
                                 </label>
                                 <div
-                                    class="flex flex-col sm:flex-row gap-4 items-center justify-center w-full relative">
+                                    class="flex flex-col-reverse sm:flex-row gap-4 items-center justify-center w-full relative">
                                     <label for="banner"
                                         class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -71,7 +71,7 @@
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Simpan
                             </button>
-                            <a href="/posts"
+                            <a href="/post/index"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-gray-800 border border-gray-200 rounded-lg">
                                 Batal
                             </a>

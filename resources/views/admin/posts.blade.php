@@ -32,7 +32,7 @@
         </div>
         <div class="overflow-x-auto px-4 py-4 bg-white border-l border-r border-gray-200">
             <table class="w-full text-sm text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-200 text-center">
                     <tr>
                         <th scope="col" class="px-4 py-3">
                             No
@@ -68,7 +68,7 @@
                             doloribus aliquam laudantium quae soluta at delectus.
                         </td>
                         <td class="px-6 py-4 text-center">
-                            <img src="https://dummyimage.com/300x400" alt="" class="w-20 h-auto">
+                            <img src="https://dummyimage.com/300x400" alt="" class="w-24 h-auto">
                         </td>
                         <td class="px-6 py-4 text-center">
                             Senin, 02 November 2023
@@ -123,7 +123,7 @@
                             Aperiam voluptates
                         </td>
                         <td class="px-6 py-4 text-center">
-                            <img src="https://dummyimage.com/300x400" alt="" class="w-16 h-auto">
+                            <img src="https://dummyimage.com/300x400" alt="" class="w-24 h-auto">
                         </td>
                         <td class="px-6 py-4 text-center">
                             Senin, 02 November 2023

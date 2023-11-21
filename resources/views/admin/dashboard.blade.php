@@ -79,7 +79,7 @@
             </div>
             <div class="overflow-x-auto pt-4 bg-white rounded-b-lg">
                 <table class="w-full text-sm text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-200 text-center">
                         <tr>
                             <th scope="col" class="px-4 py-3">
                                 No

@@ -11,7 +11,19 @@ html {
         @apply text-white bg-blue-700 md:text-blue-600 md:bg-transparent;
     }
 
-    .standart {
+    .base {
         @apply text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-600;
+    }
+
+    .sidebar-active {
+        @apply text-blue-600 font-extrabold;
+    }
+
+    .sidebar-base {
+        @apply text-gray-700 hover:text-gray-900 hover:bg-gray-100;
+    }
+
+    .sidebar-svg {
+        @apply text-gray-700 group-hover:text-gray-900;
     }
 }

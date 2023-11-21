@@ -37,19 +37,21 @@
                         <ul
                             class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
                             <li>
-                                <a href="/" class="block py-2 pl-3 pr-4 standart rounded md:p-0"
+                                <a href="/"
+                                    class="block py-2 pl-3 pr-4 {{ Request::is('/') ? 'active' : 'base' }} rounded md:p-0"
                                     aria-current="page">Beranda</a>
                             </li>
                             <li>
                                 <a href="/akademik"
-                                    class="block py-2 pl-3 pr-4 active rounded md:border-0 md:p-0">Akademik</a>
+                                    class="block py-2 pl-3 pr-4 {{ Request::is('akademik') ? 'active' : 'base' }} rounded md:border-0 md:p-0">Akademik</a>
                             </li>
                             <li>
-                                <a href="/kbm" class="block py-2 pl-3 pr-4 standart rounded md:border-0 md:p-0">KBM</a>
+                                <a href="/kbm"
+                                    class="block py-2 pl-3 pr-4 {{ Request::is('kbm') ? 'active' : 'base' }} rounded md:border-0 md:p-0">KBM</a>
                             </li>
                             <li>
                                 <a href="/kemahasiswaan"
-                                    class="block py-2 pl-3 pr-4 standart rounded md:border-0 md:p-0">Kemahasiswaan</a>
+                                    class="block py-2 pl-3 pr-4 {{ Request::is('kemahasiswaann') ? 'active' : 'base' }} rounded md:border-0 md:p-0">Kemahasiswaan</a>
                             </li>
                         </ul>
                     </div>
@@ -75,7 +77,7 @@
             </span>
         </div>
     </footer>
-    @vite('resources/js/features.js')
+    @vite('resources/js/search.js')
 </body>
 
 </html>
