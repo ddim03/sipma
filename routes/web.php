@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +19,17 @@ Route::get('/akademik', function () {
     return view('posts-by-category');
 });
 
-// Route::get('/login', function () {
-//     return view('admin.login');
-// });
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('/admin/logout', [AdminController::class, 'logout']);
 
 Route::get('/', [PostController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-});
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// });
+
+Route::get('/dashboard', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
 
 Route::get('/post/index', function () {
     return view('admin.posts');

@@ -20,5 +20,4 @@ class Admin extends Model
         return $this->hasMany(Post::class, 'admin_id');
     }
 
-
 }

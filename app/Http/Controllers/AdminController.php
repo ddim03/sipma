@@ -3,55 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    /**
-     * Menampilkan formulir login admin.
-     *
-     * @return \Illuminate\View\View
-     */
+    public function showDashboard()
+    {
+        return view('admin.dashboard');
+    }
+
     public function showLoginForm()
     {
         return view('admin.login');
     }
 
-    /**
-     * Proses login admin.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function login(Request $request)
     {
-        // Validasi formulir
         $request->validate([
             'username' => 'required',
-            'password' => 'required|min:6',
+            'password' => 'required|min:3',
         ]);
 
-        // Ganti 'email' menjadi 'username' dalam $credentials
-        $credentials = $request->only('username', 'password');
+        $admin = DB::table('admin')->where('username', $request->input('username'))->first();
 
-        // Ganti 'email' menjadi 'username' pada metode attempt
-        if (Auth::guard('admin')->attempt($credentials)) {
+        if ($admin && $request->input('password') === $admin->password) {
             // Login berhasil
-            return redirect()->intended('/admin/dashboard')->with('success', 'Login berhasil!');
+            session(['admin_logged_in' => true]);
+            return redirect()->intended('/dashboard')->with('success', 'Login berhasil!');
         }
 
-        // Login gagal
         return redirect()->route('admin.login')->withErrors(['username' => 'Username atau password salah.'])->withInput();
     }
 
-    /**
-     * Logout admin.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function logout()
     {
-        Auth::guard('admin')->logout();
-        return redirect('/admin/login');
+        session(['admin_logged_in' => false]);
+        return redirect('/login');
     }
 }
