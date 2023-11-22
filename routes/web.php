@@ -29,10 +29,10 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/post/index', function () {
-    return view('admin.posts');
-});
-
+// Route::get('/post/index', function () {
+//     return view('admin.posts');
+// });
+Route::get('/post/index', [PostController::class, 'pengumuman']);
 Route::get('/arsip/index', function () {
     return view('admin.arsip');
 });
@@ -48,3 +48,5 @@ Route::get('/post/view', function () {
 Route::get('/post/edit', function () {
     return view('admin.edit-post');
 });
+
+Route::get('/{category}', [PostController::class, 'postByCategory'])->name('posts.by.category');
