@@ -19,9 +19,10 @@ Route::get('/akademik', function () {
     return view('posts-by-category');
 });
 
-Route::get('/login', function () {
-    return view('admin.login');
-});
+// Route::get('/login', function () {
+//     return view('admin.login');
+// });
+Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 
 Route::get('/', [PostController::class, 'index']);
 
