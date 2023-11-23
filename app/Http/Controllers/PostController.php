@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('published_at', 'desc')->get();
+        $posts = Post::orderBy('created_at', 'desc')->get();
 
         foreach ($posts as $post) {
             $post->published_at = Carbon::parse($post->published_at);
