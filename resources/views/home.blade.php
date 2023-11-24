@@ -48,7 +48,7 @@
                 src="{{ asset('images/'. $post->banner) }}" alt="{{ $post->title }}">
             <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden">
                 <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">
-                    {{ $post->category->name}}
+                    {{ $post->category->nama}}
                 </span>
                 <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">{{ $post->title }}</h5>
                 <div class="text-xs text-slate-500 mb-2">From: {{ $post->admin->nama }}</div>
