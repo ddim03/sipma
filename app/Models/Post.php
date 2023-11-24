@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    use HasFactory;
     // Nama tabel dalam database yang sesuai dengan model
     protected $table = 'posts';
     // Kolom-kolom yang dapat diisi (fillable)
@@ -35,3 +36,4 @@ class Post extends Model
         return self::latest()->paginate(4);
     }
 }
+
