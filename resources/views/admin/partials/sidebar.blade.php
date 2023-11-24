@@ -39,7 +39,7 @@
         </ul>
         <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200">
             <li class>
-                <a href="/arsip"
+                <a href="admin/login"
                     class="flex items-center p-2 text-gray-700 rounded-lg hover:text-red-700 hover:bg-red-100  group">
                     <svg class="w-5 h-5 text-gray-700 transition duration-75 group-hover:text-red-700"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 21">
