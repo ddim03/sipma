@@ -10,64 +10,45 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 w-4/5">
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Judul</h2>
-                    <p class="text-sm text-slate-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Accusamus ducimus voluptates
-                    </p>
+                    <p class="text-sm text-slate-700">{{ $post->title }}</p>
                 </div>
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Slug</h2>
-                    <p class="text-sm text-slate-700">
-                        this-is-slug
-                    </p>
+                    <p class="text-sm text-slate-700">{{ $post->slug }}</p>
                 </div>
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Admin</h2>
-                    <p class="text-sm text-slate-700">
-                        Dimas Gilang Dwi Aji
-                    </p>
+                    <p class="text-sm text-slate-700">{{ $post->admin->nama }}</p>
                 </div>
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Kategori</h2>
-                    <p class="text-sm text-slate-700">
-                        Kegiatan Belajar Mengajar
-                    </p>
+                    <p class="text-sm text-slate-700">{{ $post->category->name }}</p>
                 </div>
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Published At</h2>
-                    <p class="text-sm text-slate-700">
-                        Senin, 02 November 2023
-                    </p>
+                    <p class="text-sm text-slate-700">{{ $post->published_at->format('l, d F Y') }}</p>
                 </div>
             </div>
             <div class="mt-4 sm:mt-0 mx-auto">
-                <img src="https://dummyimage.com/300x400" class="w-36 aspect-auto" alt="">
+                <img src="{{ asset('images/'. $post->banner) }}" class="w-36 aspect-auto" alt="{{ $post->title }}">
             </div>
         </div>
     </div>
     <div class="p-0 sm:p-4">
-        <div class="p-5 bg-white rounded-lg border border-gray-200">
-            <h1 class="text-md font-medium text-slate-700 mb-2">Isi Pengumuman</h1>
-            <hr>
-            <div class="mt-4">
-                <h1 class="text-3xl font-bold text-slate-800">Lorem ipsum dolor sit amet</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, similique molestias! Quas assumenda
-                    voluptate nemo animi recusandae ex aperiam rerum. Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit. Magnam laborum iusto nostrum delectus quidem provident! Nesciunt quasi hic beatae, molestiae,
-                    vero officia saepe odio quo quibusdam porro aspernatur sequi eaque.
-                </p>
-                <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas perspiciatis deleniti dolor,
-                    inventore minima soluta omnis delectus fuga doloremque veniam aut suscipit, doloribus aperiam.
-                    Laudantium asperiores ullam dolorem error dolores cupiditate praesentium velit. Voluptatibus maxime
-                    laborum est delectus saepe quibusdam, quia impedit quisquam exercitationem quidem esse minima ea
-                    quaerat temporibus?
-                </p>
-            </div>
+    <div class="p-5 bg-white rounded-lg border border-gray-200">
+        <h1 class="text-md font-medium text-slate-700 mb-2">Isi Pengumuman</h1>
+        <hr>
+        <div class="mt-4">
+            <h1 class="text-3xl font-bold text-slate-800">{{ $post->title }}</h1>
+            @php
+                $wrappedDescription = wordwrap($post->deskripsi, 117, "\n", true);
+            @endphp
+            <p>{!! nl2br(e($wrappedDescription)) !!}</p>
         </div>
     </div>
+</div>
     <div class="pl-4">
-        <a href="/post/index" type="submit"
+    <a href="/post/index"
             class="inline-flex items-center px-5 py-2.5 mt-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800">
             Kembali
         </a>
