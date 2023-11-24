@@ -35,6 +35,7 @@ class PostFactory extends Factory
             'banner' => fake()->numberBetween(1, 2) . '.jpg',
             'deskripsi' => $deskripsi,
             'is_validated' => fake()->boolean(),
+            'published at' => fake()->date,
             'admin_id' => fake()->numberBetween(1, 3),
             'category_id' => fake()->numberBetween(1, 3),
         ];
