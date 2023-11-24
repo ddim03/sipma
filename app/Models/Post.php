@@ -1,10 +1,12 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    use HasFactory;
     // Nama tabel dalam database yang sesuai dengan model
     protected $table = 'posts';
 
@@ -14,10 +16,16 @@ class Post extends Model
         // 'admin_id',
         'title',
         'slug',
+<<<<<<< HEAD
         'banner',
         'deskripsi',
         'is_validated',
         // 'published_at',
+=======
+        'gambar',
+        'isi',
+        'is_validated',
+>>>>>>> 3389e389f11f1937b2425f3d1e42a45a0e8edb4e
     ];
 
     // Relasi ke tabel Category
@@ -32,12 +40,12 @@ class Post extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class);
     }
 
     public function admin()
     {
-        return $this->belongsTo(Admin::class, 'admin_id');
+        return $this->belongsTo(Admin::class);
     }
 
     public static function getLatestPosts()

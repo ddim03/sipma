@@ -14,9 +14,13 @@ class PostController extends Controller
 {
     public function index()
     {
+<<<<<<< HEAD
         $posts = Post::where('is_validated', 1)
             ->orderBy('published_at', 'desc')
             ->get();
+=======
+        $posts = Post::orderBy('created_at', 'desc')->get();
+>>>>>>> 3389e389f11f1937b2425f3d1e42a45a0e8edb4e
 
         foreach ($posts as $post) {
             $post->published_at = Carbon::parse($post->published_at);
