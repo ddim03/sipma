@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +14,50 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        DB::table('categories')->insert([
+            [
+                'name' => 'Akademik',
+                'slug' => 'akademik',
+            ],
+            [
+                'name' => 'Kegiatan Belajar Mengajar',
+                'slug' => 'kbm',
+            ],
+            [
+                'name' => 'Kemahasiswaan',
+                'slug' => 'kemahasiswaan',
+            ]
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        DB::table('admin')->insert([
+            [
+                'nama' => 'Admin Akademik',
+                'username' => 'admin-akademik',
+                'password' => bcrypt('12345'),
+                'is_kaprodi' => false
+            ],
+            [
+                'nama' => 'Admin KBM',
+                'username' => 'admin-kbm',
+                'password' => bcrypt('12345'),
+                'is_kaprodi' => false
+            ],
+            [
+                'nama' => 'Admin Kemahasiswaan',
+                'username' => 'admin-mhs',
+                'password' => bcrypt('12345'),
+                'is_kaprodi' => false
+            ],
+            [
+                'nama' => 'Kaprodi',
+                'username' => 'kaprodi',
+                'password' => bcrypt('12345'),
+                'is_kaprodi' => true
+            ]
+        ]);
+
+        \App\Models\Arsip::factory(10)->create();
+        \App\Models\Post::factory(10)->create();
     }
 }
+ 
