@@ -8,14 +8,16 @@
         <h1 class="text-3xl font-bold text-slate-800 mt-20 sm:mt-0 mb-1.5">Buat Pengumuman</h3>
             <section class="bg-white dark:bg-gray-900 mt-4 rounded-lg">
                 <div class=" p-4 sm:p-6 ">
-                    <form action="#">
-                        <input type="hidden" name="category_id" value="">
+                    <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="admin_id" value="{{ Auth::guard('admin')->user()->admin_id }}">
+                    <input type="hidden" name="category_id" value="{{ Auth::guard('admin')->user()->admin_id }}">
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="w-full">
                                 <label for="judul" class="block mb-2 font-medium text-gray-900 dark:text-white">
                                     Judul
                                 </label>
-                                <input type="text" name="judul" id="judul"
+                                <input type="text" name="title" id="title"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Masukan judul pengumuman" required="" autocomplete="false">
                             </div>
@@ -23,15 +25,15 @@
                                 <label for="slug" class="block mb-2 font-medium text-gray-900 dark:text-white">
                                     Slug
                                 </label>
-                                <input type="text" name="slug" id="slug"
+                                <input type="text" name="slug" id="slug" readonly
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required="" autocomplete="false" disabled="true">
+                                    required="" autocomplete="false">
                             </div>
                             <div class="sm:col-span-2">
-                                <label for="isi" class="block mb-2 font-medium text-gray-900 dark:text-white">
+                                <label for="deskripsi" class="block mb-2 font-medium text-gray-900 dark:text-white">
                                     Isi Pengumuman
                                 </label>
-                                <textarea id="isi" class="w-full"><h4>Hello world!!</h4></textarea>
+                                <textarea id="deskripsi" name="deskripsi" class="w-full"><h4>Hello world!!</h4></textarea>
                             </div>
                             <div class="sm:col-span-2">
                                 <label class="block mb-2 font-medium text-gray-900" for="banner">
@@ -57,9 +59,8 @@
                                                 SVG, PNG, JPG (MAX. 2MB)
                                             </p>
                                         </div>
-                                        <input id="banner" type="file"
-                                            class="w-full h-full opacity-0 absolute top-0 left-0 cursor-pointer"
-                                            name="banner" />
+                                        <input id="banner" name="banner" type="file"
+                                            class="w-full h-full opacity-0 absolute top-0 left-0 cursor-pointer"/>
                                     </label>
                                 </div>
 

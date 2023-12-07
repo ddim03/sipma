@@ -58,116 +58,71 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 text-center">1</td>
-                        <td class="px-6 py-4 text-ellipsis">
-                            Program Magang Mandiri Telkomsel
-                        </td>
-                        <td class="px-6 py-4 text-justify">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam vitae accusantium
-                            doloribus aliquam laudantium quae soluta at delectus.
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <img src="https://dummyimage.com/300x400" alt="" class="w-24 h-auto">
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            Senin, 02 November 2023
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <span
-                                class="bg-green-50 border border-green-100 text-green-600 text-xs font-medium me-2 px-3 py-1.5 rounded-md">
-                                Validated
+                @foreach ($admin->posts as $index => $post)
+                        <tr class="bg-white border-b hover:bg-gray-50">
+                            <td class="px-6 py-4 text-center">{{ $index + 1 }}</td>
+                            <td class="px-6 py-4 text-ellipsis">{{ $post->title }}</td>
+                            <td class="px-6 py-4 text-justify">
+                                @php
+                                    // Memisahkan deskripsi menjadi array kata-kata
+                                    $words = explode(' ', $post->deskripsi);
+
+                                    // Menggabungkan kata-kata menjadi string dengan maksimal 25 karakter per baris
+                                    $wrappedDescription = wordwrap($post->deskripsi, 25, "<br>\n", true);
+
+                                    // Memecah string menjadi array baris
+                                    $lines = explode("<br>\n", $wrappedDescription);
+
+                                    // Mengambil maksimal 3 baris
+                                    $trimmedLines = array_slice($lines, 0, 3);
+                                @endphp
+
+                                @foreach ($trimmedLines as $index => $line)
+                                    @if ($index === 2)
+                                        {{ Str::limit($line, 22) }}...
+                                    @else
+                                        {{ $line }}<br>
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                            <img src="{{ Storage::url('/' . $post->banner) }}" alt="{{ $post->title }}" class="w-24 h-auto">
+                            </td>
+                            <td class="px-6 py-4 text-center">{{ $post->published_at->format('l, d F Y') }}</td>
+                            <td class="px-6 py-4 text-center">
+                            <span class="{{ $post->is_validated ? 'bg-green-50 border border-green-100 text-green-600' : 'bg-red-50 border border-red-100 text-red-600' }} text-xs font-medium me-2 px-3 py-1.5 rounded-md">
+                                {{ $post->is_validated ? 'Validated' : 'Waiting' }}
                             </span>
-                        </td>
-                        <td class="px-3 py-4">
-                            <div class="flex flex-col sm:flex-row gap-1 justify-center items-center">
-                                <a href="/post/view" type="button"
-                                    class="px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                    <svg class="w-5 h-5 text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 14">
-                                        <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2">
-                                            <path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                                            <path d="M10 13c4.97 0 9-2.686 9-6s-4.03-6-9-6-9 2.686-9 6 4.03 6 9 6Z" />
-                                        </g>
-                                    </svg>
-                                </a>
-                                <a href="/post/edit" type="button"
-                                    class="px-3 py-2 text-sm font-medium text-center text-white bg-yellow-300 rounded-lg hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                    <svg class="w-5 h-5 text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279" />
-                                    </svg>
-                                </a>
-                                <a href="/post/delete" type="button"
-                                    class="px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                    <svg class="w-5 h-5 text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 text-center">2</td>
-                        <td class="px-6 py-4">
-                            Lomba PKM POLINEMA PSDKU Kediri
-                        </td>
-                        <td class="px-6 py-4 text-justify">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo fuga vitae corrupti!
-                            Aperiam voluptates
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <img src="https://dummyimage.com/300x400" alt="" class="w-24 h-auto">
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            Senin, 02 November 2023
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <span
-                                class="bg-red-50 border border-red-100 text-red-600 text-xs font-medium me-2 px-3 py-1.5 rounded-md">
-                                Waiting
-                            </span>
-                        </td>
-                        <td class="px-3 py-4">
-                            <div class="flex flex-col sm:flex-row gap-1 justify-center items-center">
-                                <button type="button"
-                                    class="px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                    <svg class="w-5 h-5 text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 14">
-                                        <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2">
-                                            <path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                                            <path d="M10 13c4.97 0 9-2.686 9-6s-4.03-6-9-6-9 2.686-9 6 4.03 6 9 6Z" />
-                                        </g>
-                                    </svg>
-                                </button>
-                                <button type="button"
-                                    class="px-3 py-2 text-sm font-medium text-center text-white bg-yellow-300 rounded-lg hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                    <svg class="w-5 h-5 text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279" />
-                                    </svg>
-                                </button>
-                                <button type="button"
-                                    class="px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                    <svg class="w-5 h-5 text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                            <td class="px-3 py-4">
+                                <div class="flex flex-col sm:flex-row gap-1 justify-center items-center">
+                                    <a href="/post/view/{{$post['post_id']}}" type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                        <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 14">
+                                            <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                <path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                                <path d="M10 13c4.97 0 9-2.686 9-6s-4.03-6-9-6-9 2.686-9 6 4.03 6 9 6Z" />
+                                            </g>
+                                        </svg>
+                                    </a>
+                                    <a href="/post/edit/{{$post['post_id']}}" type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-yellow-300 rounded-lg hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                        <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279" />
+                                        </svg>
+                                    </a>
+                                    <form action="/post/delete/{{$post['post_id']}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                            <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -1,37 +1,45 @@
 @extends('admin.layouts.main-form')
 
 @section('content')
-@include('admin.partials.navbar')
-@include('admin.partials.sidebar')
-<main class="p-4 sm:ml-64 bg-gray-50 font-roboto min-h-screen">
-    <div class="p-0 sm:p-4 mt-14">
-        <h1 class="text-3xl font-bold text-slate-800 mt-20 sm:mt-0 mb-1.5">Buat Pengumuman</h3>
+    @include('admin.partials.navbar')
+    @include('admin.partials.sidebar')
+
+    <main class="p-4 sm:ml-64 bg-gray-50 font-roboto min-h-screen">
+        <div class="p-0 sm:p-4 mt-14">
+            <h1 class="text-3xl font-bold text-slate-800 mt-20 sm:mt-0 mb-1.5">Buat Pengumuman</h1>
             <section class="bg-white dark:bg-gray-900 mt-4 rounded-lg">
-                <div class=" p-4 sm:p-6 ">
-                    <form action="#">
-                        <input type="hidden" name="category_id" value="">
+                <div class="p-4 sm:p-6">
+                    <form action="{{ route('update-post', ['post_id' => $post->post_id]) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="category_id" value="{{ $post->category_id ?? '' }}">
+                        <input type="hidden" name="admin_id" value="{{ $post->admin_id ?? '' }}">
+
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="w-full">
                                 <label for="judul" class="block mb-2 font-medium text-gray-900 dark:text-white">
                                     Judul
                                 </label>
-                                <input type="text" name="judul" id="judul"
+                                <input type="text" name="judul" id="judul" value="{{ $post->title ?? '' }}" 
+
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Masukan judul pengumuman" required="" autocomplete="false">
+                                    placeholder="Masukan judul pengumuman" required autocomplete="false">
                             </div>
                             <div class="w-full">
                                 <label for="slug" class="block mb-2 font-medium text-gray-900 dark:text-white">
                                     Slug
                                 </label>
-                                <input type="text" name="slug" id="slug"
+                                <input type="text" name="slug" id="slug" value="{{ $post->slug ?? '' }}"  readonly 
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required="" autocomplete="false" disabled="true">
+                                    required="" autocomplete="false">
                             </div>
                             <div class="sm:col-span-2">
-                                <label for="isi" class="block mb-2 font-medium text-gray-900 dark:text-white">
+                                <label for="deskripsi" class="block mb-2 font-medium text-gray-900 dark:text-white">
                                     Isi Pengumuman
                                 </label>
-                                <textarea id="isi" class="w-full"><h4>Hello world!!</h4></textarea>
+                                <textarea name="deskripsi" id="deskripsi"
+                                    class="w-full">{{ $post->deskripsi ?? '' }}</textarea>
                             </div>
                             <div class="sm:col-span-2">
                                 <label class="block mb-2 font-medium text-gray-900" for="banner">
@@ -62,16 +70,18 @@
                                             class="w-full h-full opacity-0 absolute top-0 left-0 cursor-pointer"
                                             name="banner" />
                                     </label>
-                                    <img src="https://dummyimage.com/300x400" class="w-48 h-auto" alt="">
+                                    <img src="{{ asset('/images/'. $post->banner) }}" class="w-48 h-auto" alt="">
+                                        alt="">
                                 </div>
                             </div>
                         </div>
+
                         <div class="flex gap-3">
                             <button type="submit"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Simpan
                             </button>
-                            <a href="/post/index"
+                            <a href="{{ url('/post/') }}"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-gray-800 border border-gray-200 rounded-lg">
                                 Batal
                             </a>
@@ -79,6 +89,6 @@
                     </form>
                 </div>
             </section>
-    </div>
-</main>
+        </div>
+    </main>
 @endsection
