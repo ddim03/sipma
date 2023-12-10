@@ -46,10 +46,6 @@
                                     class="block py-2 pl-3 pr-4 {{ Request::is('akademik') ? 'active' : 'base' }} rounded md:border-0 md:p-0">Akademik</a>
                             </li>
                             <li>
-                                <a href="/kbm"
-                                    class="block py-2 pl-3 pr-4 {{ Request::is('kbm') ? 'active' : 'base' }} rounded md:border-0 md:p-0">KBM</a>
-                            </li>
-                            <li>
                                 <a href="/kemahasiswaan"
                                     class="block py-2 pl-3 pr-4 {{ Request::is('kemahasiswaann') ? 'active' : 'base' }} rounded md:border-0 md:p-0">Kemahasiswaan</a>
                             </li>

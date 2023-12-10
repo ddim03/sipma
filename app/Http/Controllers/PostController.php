@@ -12,19 +12,26 @@ use Illuminate\Support\Str;
 
     class PostController extends Controller
     {
-        public function index()
-    {
+        public function index(Request $request)
+{
+    $showAll = $request->query('show_all');
+
+    if ($showAll) {
         $posts = Post::where('is_validated', 1)
             ->orderBy('published_at', 'desc')
             ->get();
-
-        foreach ($posts as $post) {
-            $post->published_at = Carbon::parse($post->published_at);
-        }
-
-        return view('home', ['posts' => $posts]);
+    } else {
+        $posts = Post::where('is_validated', 1)
+            ->orderBy('published_at', 'desc')
+            ->paginate(4);
     }
 
+    foreach ($posts as $post) {
+        $post->published_at = Carbon::parse($post->published_at);
+    }
+
+    return view('home', ['posts' => $posts]);
+}
 
     public function pengumuman()
     {
@@ -50,8 +57,6 @@ use Illuminate\Support\Str;
         return view('admin.posts', ['posts' => $posts, 'admin' => $admin]);
     }
 
-
-
     public function postByCategory($category)
         {
             // Ambil ID kategori berdasarkan nama kategori
@@ -75,6 +80,21 @@ use Illuminate\Support\Str;
             return view('posts-by-category', ['posts' => $posts, 'category' => $category]);
         }
         
+        public function searchCategory(Request $request)
+{
+    $query = $request->input('query');
+
+    if ($query) {
+        $posts = Post::where('title', 'like', '%' . $query . '%')->orderBy('published_at', 'desc')->get();
+    } else {
+        $posts = Post::orderBy('published_at', 'desc')->get();
+    }
+
+    foreach ($posts as $post) {
+        $post->published_at = Carbon::parse($post->published_at);
+    }
+    return view('posts-by-category', ['posts' => $posts, 'category' => $query]);
+}
         public function show($post_id)
         {
             $post = Post::find($post_id);
@@ -138,9 +158,7 @@ use Illuminate\Support\Str;
             // Redirect or respond as needed
             return redirect('/post')->with('success', 'Post updated successfully');
         }
-        
-        
-
+    
     public function destroy($post_id)
     {
         $post = Post::find($post_id);
@@ -180,10 +198,6 @@ use Illuminate\Support\Str;
         // Count the number of posts awaiting validation
         $waitingValidationPosts = Post::where('is_validated', 0)->count();
 
-        // Count the number of archived posts
-        // Note: Adjust this based on the actual criteria for archived posts
-        // $archivedPosts = Post::where('is_archived', 1)->count();
-
         // Pass the counts and posts to the view
         return view('/admin/dashboard', [
             'totalPosts' => $totalPosts,
@@ -202,9 +216,10 @@ use Illuminate\Support\Str;
         'slug' => 'required|string',
         'deskripsi' => 'required|string',
         'banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        // Add other fields as needed
+        // Add other fields as needed 
     ]);
 
+    $validatedData['deskripsi'] = strip_tags($validatedData['deskripsi']);
     if (in_array(null, $validatedData)) {
         // Redirect back with an error message
         dd('Please fill in all required fields'); // Tambahkan ini untuk memeriksa pesan

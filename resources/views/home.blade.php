@@ -21,9 +21,10 @@
                             </svg>
                         </div>
                         <input type="search" id="default-search"
-                            class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Cari judul pengumuman...">
+                                    class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Cari judul pengumuman...">
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -35,10 +36,11 @@
             <h2 class="text-2xl font-semibold text-gray-800">Terbaru</h2>
             <p class="text-md text-gray-400">Pengumuman yang baru saja dipublikasikan</p>
         </div>
-        <a href="#"
-            class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
-            Lihat semua
-        </a>
+        <a href="{{ url('/') }}?show_all=true"
+   class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
+    Lihat semua
+</a>
+
     </div>
     <div class="w-full grid grid-cols-1 lg:grid-cols-2 mt-5 mb-14 gap-3">
     @foreach($posts as $post)

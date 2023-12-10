@@ -12,7 +12,7 @@
     <script src="{{ asset('tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: 'textarea#isi',
+            selector: 'textarea#deskripsi',
             toolbar_mode: 'floating',
             plugins: 'lists link',
             toolbar: 'undo redo | blocks | fontsize | bold italic underline | alignleft aligncenter alignright | indent outdent | bullist numlist | link',
