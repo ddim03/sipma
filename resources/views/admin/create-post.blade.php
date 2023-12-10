@@ -81,4 +81,36 @@
             </section>
     </div>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: 'Pengumuman akan disimpan.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Simpan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Lanjutkan dengan menyubmit formulir jika pengguna menekan "Ya"
+                    form.submit();
+                    Swal.fire(
+                        'Pengumuman Ditambahkan!',
+                        'Pengumuman Anda berhasil ditambahkan.',
+                        'success'
+                    );
+                }
+            });
+        });
+    });
+</script>
+
 @endsection

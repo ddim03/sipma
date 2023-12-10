@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('arsips', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id');
+            $table->string('nama');
+            $table->text('deskripsi');
+            $table->string('nama_file');
             $table->timestamps();
+
+            $table->foreign('admin_id')->references('admin_id')->on('admin');
         });
     }
 
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('arsips');
     }
 };

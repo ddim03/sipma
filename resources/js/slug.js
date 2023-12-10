@@ -1,8 +1,8 @@
-const judul = document.getElementById("judul");
+const title = document.getElementById("title");
 const slugInput = document.getElementById("slug");
 
-judul.addEventListener("keyup", function () {
-    let preslug = judul.value
+title.addEventListener("keyup", function () {
+    let preslug = title.value
         .toLowerCase()
         .replace(/ /g, "-")
         .replace(/[^\w-]+/g, "");

@@ -163,12 +163,11 @@ use Illuminate\Support\Str;
     {
         $postsQuery = Post::query();
 
-        if ($request){
-            $post = Post::where('title', 'LIKE', '%' .$request->search. '%')->get();
-        }else{
-            $post = Post::all();
+        if ($request->has('search')) {
+            // Tambahkan kondisi pencarian berdasarkan judul
+            $postsQuery->where('title', 'LIKE', '%' . $request->input('search') . '%');
         }
-
+    
         // Get paginated results
         $posts = $postsQuery->paginate(10);
 

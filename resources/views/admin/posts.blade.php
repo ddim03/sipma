@@ -16,10 +16,53 @@
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input type="search" id="default-search"
-                    class=" w-full py-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Cari judul pengumuman">
+                <form action="{{ route('post.search') }}" method="GET" class="w-full">
+    <div class="relative flex items-center w-full">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
+        </div>
+        <input type="text" name="search" class="w-full py-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari judul pengumuman">
+    </div>
+</form>
+
             </div>
+            <!-- Masukkan script SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+            <script>
+            // Fungsi untuk menampilkan SweetAlert konfirmasi penghapusan
+            function tampilkanKonfirmasiHapus(postId) {
+                Swal.fire({
+            title: "Apa Kamu Yakin?",
+            text: "Anda tidak akan dapat mengembalikan ini!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: "Ya, Hapus Pengumuman!",
+            cancelButtonText: "Tidak, Kembali!",
+            reverseButtons: true
+        }).then((result) => {
+                    if (result.isConfirmed) {
+                        swal.fire({
+                        title: "Hapus!",
+                        text: "Pengumuman telah terhapus.",
+                        icon: "success"
+                        })
+                        // Jika pengguna mengklik "Yes, delete it!", submit formulir penghapusan
+                        document.getElementById(`deleteForm-${postId}`).submit();
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swal.fire({
+                            title: "Cancelled",
+                            text: "Your imaginary file is safe :)",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+        </script>
             <a href="/post/create" type="button"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 focus:outline-none flex justify-center items-center">
                 <svg class="w-4 h-4 mr-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -97,7 +140,8 @@
                             <td class="px-3 py-4">
                                 <div class="flex flex-col sm:flex-row gap-1 justify-center items-center">
                                     <a href="/post/view/{{$post['post_id']}}" type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                        <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 14">
+                                    <!-- Lihat -->
+                                 <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 14">
                                             <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                                 <path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                                                 <path d="M10 13c4.97 0 9-2.686 9-6s-4.03-6-9-6-9 2.686-9 6 4.03 6 9 6Z" />
@@ -105,20 +149,39 @@
                                         </svg>
                                     </a>
                                     <a href="/post/edit/{{$post['post_id']}}" type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-yellow-300 rounded-lg hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                        <!-- Edit -->
                                         <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279" />
                                         </svg>
                                     </a>
-                                    <form action="/post/delete/{{$post['post_id']}}" method="POST">
+                                    <!-- <form action="/post/delete/{{$post['post_id']}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-
-                                        <button type="submit" class="px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                        <button type="submit" class="px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                                        id="delete">
                                             <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
                                             </svg>
                                         </button>
+                                    </form> -->
+                                     <!-- Tombol untuk menghapus dengan SweetAlert -->
+                                     <button type="submit"
+                                        class="px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                                        onclick="tampilkanKonfirmasiHapus({{ $post->post_id }})">
+                                        <!-- Hapus -->
+                                        <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 18 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
+                                        </svg>
+                                    </button>
+                                    <form id="deleteForm-{{ $post->post_id }}" action="{{ url('/post/delete', ['post_id' => $post->post_id]) }}"
+                                        method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
                                     </form>
+
                                 </div>
                             </td>
                         </tr>

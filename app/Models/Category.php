@@ -8,10 +8,10 @@ class Category extends Model
 {
     protected $table = 'categories'; // Nama tabel dalam database
 
-    protected $primaryKey = 'id'; // Nama kolom primary key
+    protected $primaryKey = 'category_id'; // Nama kolom primary key
 
     protected $fillable = [
-        'nama', // Nama kategori
+        'name', // Nama kategori
         'slug', // Slug kategori
     ];
     public function posts()
@@ -21,5 +21,10 @@ class Category extends Model
 
     public $timestamps = true; // Mengaktifkan pengelolaan waktu (created_at dan updated_at)
 
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+    
 
 }

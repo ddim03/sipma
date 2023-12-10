@@ -27,6 +27,7 @@ Route::get('/login', function () {
 Route::get('/', [PostController::class, 'index']);
 
 Route::get('/dashboard', [PostController::class, 'readadmin']);
+Route::get('/admin/search', [PostController::class, 'readadmin'])->name('post.search');
 Route::get('/post', [PostController::class, 'pengumuman'])->name('post.index');
 Route::get('/post/view/{post_id}', [PostController::class, 'show'])->name('post.show');
 
@@ -45,10 +46,19 @@ Route::get('/{category}', [PostController::class, 'postByCategory'])->name('post
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::get('/admin/logout', [AdminController::class, 'logout']);
-// Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 
 Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
 Route::get('/post/edit/{post_id}', [PostController::class, 'edit'])->name('edit-post');;
 Route::put('/post/update/{post_id}', [PostController::class, 'update'])->name('update-post');
 Route::delete('/post/delete/{post_id}', [PostController::class, 'destroy'])->name('delete-post');
 Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
+
+// Route::get('/dashboard', function () {
+//     // Cek apakah pengguna sudah login
+//     if (auth('admin')->check()) {
+//         return view('admin.dashboard');
+//     } else {
+//         // Jika belum login, arahkan ke halaman login dengan pesan peringatan
+//         return redirect('/login')->with('warning', 'Anda harus login terlebih dahulu.');
+//     }
+// });

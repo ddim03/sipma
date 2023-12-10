@@ -2,48 +2,39 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Post extends Model
+class Admin extends Authenticatable
 {
-    use HasFactory;
-    // Nama tabel dalam database yang sesuai dengan model
-    protected $table = 'posts';
+    use HasFactory, Notifiable;
 
-    // Kolom-kolom yang dapat diisi (fillable)
+    protected $table = 'admin'; // Nama tabel dalam database
+
+    protected $primaryKey = 'admin_id'; // Nama kolom primary key
+
     protected $fillable = [
-        'category_id',
-        'admin_id',
-        'title',
-        'slug',
-        'deskripsi',
-        'banner',
-        'is_validated',
-        'published_at',
-    ];
-    public function category()
-    {
-        // Define the relationship to the Category model
-        return $this->belongsTo(Category::class, 'category_id');
-    }
-    // Relasi ke tabel Category
-    protected $primaryKey = 'post_id';
-    protected $dates = ['published_at'];
-
-    // Add this line to cast published_at to datetime
-    protected $casts = [
-        'published_at' => 'datetime',
+        'nama', 
+        'username', 
+        'password',
+        'is_kaprodi',  
     ];
 
-
-
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
     public function admin()
     {
-        return $this->belongsTo(Admin::class, 'admin_id');
+        return $this->hasOne(Admin::class);
+    }
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'admin_id');
     }
 
-    public static function getLatestPosts()
+    public function category()
     {
-        return self::latest()->paginate(4);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

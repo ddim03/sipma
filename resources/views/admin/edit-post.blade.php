@@ -9,7 +9,7 @@
             <h1 class="text-3xl font-bold text-slate-800 mt-20 sm:mt-0 mb-1.5">Buat Pengumuman</h1>
             <section class="bg-white dark:bg-gray-900 mt-4 rounded-lg">
                 <div class="p-4 sm:p-6">
-                    <form action="{{ route('update-post', ['post_id' => $post->post_id]) }}" method="POST"
+                    <form action="{{ route('update-post', ['post_id' => $post->post_id]) }}" method="POST" id="editPostForm"
                         enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="_method" value="PUT">
@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="flex gap-3">
-                            <button type="submit"
+                            <button type="submit" id="simpanButton"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Simpan
                             </button>
@@ -91,4 +91,42 @@
             </section>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const editPostForm = document.getElementById('editPostForm');
+        const simpanButton = document.getElementById('simpanButton');
+
+        editPostForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: 'Pengumuman akan diperbarui.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Simpan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Disable button untuk menghindari pengiriman ganda
+                    simpanButton.disabled = true;
+
+                    // Lanjutkan dengan menyubmit formulir jika pengguna menekan "Ya"
+                    editPostForm.submit();
+
+                    // Tampilkan alert bahwa pengumuman berhasil diperbarui
+                    Swal.fire(
+                        'Pengumuman Diperbarui!',
+                        'Pengumuman Anda berhasil diperbarui.',
+                        'success'
+                    );
+                }
+            });
+        });
+    });
+</script>
 @endsection

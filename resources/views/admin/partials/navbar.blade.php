@@ -20,11 +20,14 @@
                 </a>
             </div>
             <div class="flex items-center">
-                <div class="flex items-center ms-3">
-                    <p class="mr-3 text-gray-700 text-sm hidden md:block font-medium">Dimas Gilang Dwi Aji</p>
-                    <img class="w-8 h-8 rounded-full"
-                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
-                </div>
+               <div class="flex items-center ms-3">
+    @auth('admin')
+        <p class="mr-3 text-gray-700 text-sm hidden md:block font-medium">{{ Auth::guard('admin')->user()->nama }}</p>
+        <img class="w-8 h-8 rounded-full"
+            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+    @endauth
+</div>
+
             </div>
         </div>
     </div>
