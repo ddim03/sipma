@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminPostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -15,36 +16,40 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/akademik', function () {
-    return view('posts-by-category');
-});
-
-Route::get('/login', function () {
-    return view('admin.login');
-});
-
 Route::get('/', [PostController::class, 'index']);
+Route::get('/categories/{category:nama}', [PostController::class, 'getPostByCategory']);
+Route::get('/detail/{post:slug}', [PostController::class, 'show']);
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [LoginController::class, 'index']);
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 });
 
-Route::get('/post/index', function () {
-    return view('admin.posts');
-});
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/arsip/index', function () {
-    return view('admin.arsip');
-});
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard.index');
+    });
 
-Route::get('/post/create', function () {
-    return view('admin.create-post');
-});
+    Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/post/view', function () {
-    return view('admin.view-post');
-});
+    Route::resource('post', AdminPostController::class);
+    Route::get('post/review/{post:slug}', [AdminPostController::class, 'review']);
+    Route::post('post/validate/{post:slug}', [AdminPostController::class, 'validasi']);
 
-Route::get('/post/edit', function () {
-    return view('admin.edit-post');
+    Route::get('/arsip', function () {
+        return view('admin.arsips.index');
+    });
+
+    Route::get('/arsip/create', function () {
+        return view('admin.arsips.create');
+    });
+
+    Route::get('/arsip/edit', function () {
+        return view('admin.arsips.edit');
+    });
+
+    Route::get('/arsip/show', function () {
+        return view('admin.arsips.show');
+    });
 });

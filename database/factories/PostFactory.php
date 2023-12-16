@@ -35,8 +35,8 @@ class PostFactory extends Factory
             'gambar' => fake()->numberBetween(1, 2) . '.jpg',
             'isi' => $isi,
             'is_validated' => fake()->boolean(),
-            'admin_id' => fake()->numberBetween(1, 3),
-            'category_id' => fake()->numberBetween(1, 3),
+            'admin_id' => fake()->numberBetween(1, 2),
+            'category_id' => fake()->numberBetween(1, 2),
         ];
     }
 }

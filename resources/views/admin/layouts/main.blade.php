@@ -12,8 +12,17 @@
     <title>SIPMA | Admin</title>
 </head>
 
-<body>
+<body class="overflow-x-hidden">
     @yield('content')
+    <script src="{{ asset('js/flash.js') }}"></script>
+    <script>
+        @if(session('loginSuccess'))
+        notif();
+        @endif
+        @if(session('success'))
+        flash();
+        @endif
+    </script>
 </body>
 
 </html>

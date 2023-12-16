@@ -15,15 +15,16 @@
                 </button>
                 <a href="/admin/dashboard" class="flex ms-2 md:me-24">
                     <img src="{{ Vite::asset('resources/img/logo.png') }}" class="h-8 me-3" alt="SIPMA logo" />
-                    <span
-                        class="self-center text-lg font-semibold whitespace-nowrap leading-none">SIPMA<br>POLINEMA</span>
+                    <span class="self-center text-lg font-bold whitespace-nowrap leading-none">SIPMA<br>POLINEMA</span>
                 </a>
             </div>
             <div class="flex items-center">
                 <div class="flex items-center ms-3">
-                    <p class="mr-3 text-gray-700 text-sm hidden md:block font-medium">Dimas Gilang Dwi Aji</p>
-                    <img class="w-8 h-8 rounded-full"
-                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                    @auth
+                    <p class="mr-3 text-gray-700 text-sm hidden md:block font-medium">{{ Auth::user()->nama }}</p>
+                    <img class="w-8 h-8 rounded-full" src="{{ Vite::asset('resources/img/user.svg') }}"
+                        alt="user photo">
+                    @endauth
                 </div>
             </div>
         </div>

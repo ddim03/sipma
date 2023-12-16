@@ -16,7 +16,7 @@ html {
     }
 
     .sidebar-active {
-        @apply text-blue-600 font-extrabold;
+        @apply text-white bg-blue-600;
     }
 
     .sidebar-base {

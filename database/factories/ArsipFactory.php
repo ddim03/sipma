@@ -17,7 +17,7 @@ class ArsipFactory extends Factory
     public function definition(): array
     {
         return [
-            'admin_id' => fake()->numberBetween(1, 3),
+            'admin_id' => fake()->numberBetween(1, 2),
             'nama' => fake()->sentence(),
             'deskripsi' => fake()->paragraph(),
             'nama_file' => fake()->numberBetween(1, 2) . '.pdf',

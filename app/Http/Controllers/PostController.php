@@ -2,37 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post; // Pastikan namespace-nya sesuai dengan struktur direktori Anda
-use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\Admin;
-use Carbon\Carbon;
+use App\Models\Post;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::where('is_validated', 1)->paginate(4);
 
-        foreach ($posts as $post) {
-            $post->published_at = Carbon::parse($post->published_at);
-        }
+        $posts = $this->removeHTML($posts);
 
         return view('home', ['posts' => $posts]);
     }
+
+    public function getPostByCategory(Category $category)
+    {
+        $posts = $category->posts->where('is_validated', 1);
+        $posts = $this->removeHTML($posts);
+        return view('posts-by-category', [
+            'title' => $category->nama,
+            'posts' => $posts
+        ]);
+    }
+
+    public function show(Post $post)
+    {
+        return view('detail', ['post' => $post]);
+    }
+
+    public function removeHTML($posts)
+    {
+        foreach ($posts as $post) {
+            if (Str::length($post) > 110) {
+                $post->isi = Str::limit(strip_tags($post->isi), 110);
+            } else {
+                $post->isi = strip_tags($post->isi);
+            }
+        }
+        return $posts;
+    }
 }
-
-
-
-// class PostController extends Controller
-// {
-//     public function index()
-// {
-//     $posts = Post::orderBy('published_at', 'desc')->get(); // Mengambil data terbaru
-//     foreach ($posts as $post) {
-//         $post->published_at = $post->published_at->toDateString(); // Konversi ke format tanggal
-//     }
-//     return view('home', ['posts' => $posts]);
-// }
-
-// }

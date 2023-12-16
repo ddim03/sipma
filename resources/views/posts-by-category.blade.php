@@ -7,9 +7,10 @@
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16" id="search">
                 <h1
                     class="mb-6 mt-20 text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-white md:text-5xl lg:text-6xl">
-                    Pengumuman Akademik</h1>
+                    Pengumuman {{ $title }}</h1>
                 <p class="mb-8 text-md sm:text-lg font-normal text-gray-50 lg:text-xl sm:px-16 lg:px-48">
-                    Pengumuman tentang kegiatan akademik mahasiswa program studi manajemen informatika</p>
+                    Pengumuman tentang kegiatan {{ Str::lower($title) }} mahasiswa program studi manajemen informatika
+                </p>
             </div>
         </div>
     </div>
@@ -18,7 +19,7 @@
     <nav class="flex" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
-                <a href="#"
+                <a href="/"
                     class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                     Beranda
                 </a>
@@ -30,12 +31,15 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
                     </svg>
-                    <a href="#"
-                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Akademik</a>
+                    <a href="{{ url('/categories/'.Str::lower($title))}}"
+                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+                        {{ $title }}
+                    </a>
                 </div>
             </li>
         </ol>
     </nav>
+    @if (count($posts) > 0)
     <div class="flex mt-4 ">
         <div class="w-full md:w-1/2">
             <div class="relative">
@@ -52,83 +56,35 @@
             </div>
         </div>
     </div>
-    <div class="w-full grid grid-cols-1 lg:grid-cols-2 mt-5 mb-14 gap-3">
-        <a href="#"
-            class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 overflow-hidden">
-            <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                src="https://dummyimage.com/300x400" alt="">
-            <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden ">
-                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">Akademik</span>
-                <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">
-                    Lorem ipsum
-                    dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, ducimus.
-                </h5>
-                <div class="text-xs text-slate-500 mb-2">From : Dimas Gilang Dwi Aji</div>
-                <p class="mb-5 font-normal text-gray-700">
-                    Here are the biggest
-                    enterprise
-                    technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                <div class="flex w-full justify-end text-xs text-slate-500">Published at : Senin, 04 Desember
-                    2023</div>
+    @endif
+    <div class="w-full grid grid-cols-1 {{ count($posts) > 0 ? 'lg:grid-cols-2' : '' }} mt-5 mb-14 gap-3">
+        @forelse ($posts as $post)
+        <a href="/detail/{{$post->slug}}"
+            class="flex flex-col items-start bg-white border border-gray-200 rounded shadow md:flex-row hover:bg-gray-100 overflow-hidden">
+            <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l"
+                src="{{ asset('images/'. $post->gambar) }}" alt="{{ $post->judul }}">
+            <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden">
+                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">
+                    {{ $post->category->nama}}
+                </span>
+                <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">{{ $post->judul }}</h5>
+                <div class="text-xs text-slate-500 mb-2">From {{ $post->admin->nama }}</div>
+                <p class="mb-5 font-normal text-gray-700 te">{{ $post->isi }}</p>
+                <div class="flex w-full justify-end text-xs text-slate-500">
+                    Published at {{ $post->created_at->format('l, d F Y') }}
+                </div>
             </div>
         </a>
-        <a href="#"
-            class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 overflow-hidden">
-            <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                src="https://dummyimage.com/300x400" alt="">
-            <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden ">
-                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">Akademik</span>
-                <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">
-                    Lorem ipsum
-                    dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, ducimus.
-                </h5>
-                <div class="text-xs text-slate-500 mb-2">From : Dimas Gilang Dwi Aji</div>
-                <p class="mb-5 font-normal text-gray-700">
-                    Here are the biggest
-                    enterprise
-                    technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                <div class="flex w-full justify-end text-xs text-slate-500">Published at : Senin, 04 Desember
-                    2023</div>
-            </div>
-        </a>
-        <a href="#"
-            class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 overflow-hidden">
-            <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                src="https://dummyimage.com/300x400" alt="">
-            <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden ">
-                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">Akademik</span>
-                <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">
-                    Lorem ipsum
-                    dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, ducimus.
-                </h5>
-                <div class="text-xs text-slate-500 mb-2">From : Dimas Gilang Dwi Aji</div>
-                <p class="mb-5 font-normal text-gray-700">
-                    Here are the biggest
-                    enterprise
-                    technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                <div class="flex w-full justify-end text-xs text-slate-500">Published at : Senin, 04 Desember
-                    2023</div>
-            </div>
-        </a>
-        <a href="#"
-            class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 overflow-hidden">
-            <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                src="https://dummyimage.com/300x400" alt="">
-            <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden ">
-                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">Akademik</span>
-                <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">
-                    Lorem ipsum
-                    dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, ducimus.
-                </h5>
-                <div class="text-xs text-slate-500 mb-2">From : Dimas Gilang Dwi Aji</div>
-                <p class="mb-5 font-normal text-gray-700">
-                    Here are the biggest
-                    enterprise
-                    technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                <div class="flex w-full justify-end text-xs text-slate-500">Published at : Senin, 04 Desember
-                    2023</div>
-            </div>
-        </a>
+        @empty
+        <div class="w-full flex justify-center items-center h-24">
+            <svg class="w-5 h-5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 9h2v5m-2 0h4M9.408 5.5h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+            <p class="ml-3 text-gray-400 font-medium">Belum ada pengumuman</p>
+        </div>
+        @endforelse
     </div>
 </section>
 @endsection

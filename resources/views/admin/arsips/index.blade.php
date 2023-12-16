@@ -3,11 +3,11 @@
 @section('content')
 @include('admin.partials.navbar')
 @include('admin.partials.sidebar')
-<main class="p-4 sm:ml-64 bg-gray-50 font-roboto min-h-screen">
+<main class="px-4 py-4 md:py-2 sm:ml-64 bg-gray-50 font-roboto min-h-screen">
     <div class="p-0 sm:p-4 mt-14">
         <h3 class="text-3xl font-bold text-slate-800 mt-20 sm:mt-0 mb-1.5">Arsip</h3>
         <span class="block mb-4 text-sm text-gray-500">Halaman untuk mengelola data arsip</span>
-        <div class="p-4 bg-white flex justify-between rounded-t-lg border-l border-r border-t border-gray-200">
+        <div class="p-4 bg-white flex justify-between rounded-t border-l border-r border-t border-gray-200">
             <div class="relative h-11 w-3/5 sm:w-1/2">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-full">
                     <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -17,11 +17,11 @@
                     </svg>
                 </div>
                 <input type="search" id="default-search"
-                    class=" w-full py-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                    class=" w-full py-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Cari nama arsip">
             </div>
             <a href="/arsip/create"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 focus:outline-none flex justify-center items-center">
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-3 py-2 focus:outline-none flex justify-center items-center">
                 <svg class="w-4 h-4 mr-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,7 +31,7 @@
         </div>
         <div class="overflow-x-auto px-4 py-4 bg-white border-l border-r border-gray-200">
             <table class="w-full text-sm text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-200 text-center">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-300 text-center">
                     <tr>
                         <th scope="col" class="px-4 py-3">
                             No
@@ -72,8 +72,8 @@
                         </td>
                         <td class="px-3 py-4 text-center">
                             <div class="flex flex-col sm:flex-row gap-1 justify-center items-center">
-                                <button type="button"
-                                    class="px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                <a href="{{ url('/arsip/show') }}"
+                                    class="block px-3 py-2 text-sm font-medium text-center text-white bg-green-600 rounded hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                     <svg class="w-5 h-5 text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 14">
                                         <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -82,37 +82,28 @@
                                             <path d="M10 13c4.97 0 9-2.686 9-6s-4.03-6-9-6-9 2.686-9 6 4.03 6 9 6Z" />
                                         </g>
                                     </svg>
-                                </button>
-                                <button type="button"
-                                    class="px-3 py-2 text-sm font-medium text-center text-white bg-yellow-300 rounded-lg hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                </a>
+                                <a href="{{ url('/arsip/edit') }}"
+                                    class="block px-3 py-2 text-sm font-medium text-center text-white bg-yellow-300 rounded hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300">
                                     <svg class="w-5 h-5 text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2"
                                             d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279" />
                                     </svg>
-                                </button>
-                                <button type="button"
-                                    class="px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                    <svg class="w-5 h-5 text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
-                                    </svg>
-                                </button>
+                                </a>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="flex justify-center bg-white pb-4 rounded-b-lg border-l border-r border-b border-gray-200">
+        <div class="flex justify-center bg-white pb-4 rounded-b border-l border-r border-b border-gray-200">
             <nav aria-label="Page navigation example">
                 <ul class="inline-flex -space-x-px text-sm">
                     <li>
                         <a href="#"
-                            class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                            class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
                     </li>
                     <li>
                         <a href="#"
@@ -120,7 +111,7 @@
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
                     </li>
                 </ul>
             </nav>
