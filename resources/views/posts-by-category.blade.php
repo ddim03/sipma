@@ -48,22 +48,31 @@
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
+                    
                     <form action="{{ route('searchCategory', ['category' => $category]) }}" method="GET" class="relative">
                         @csrf
-                        <input type="search" name="query" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari judul pengumuman...">
+                        <input type="search" name="query" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" 
+                        placeholder="Cari judul pengumuman...">
                     </form>
                 </div>
             </div>
         </div>
         <div class="w-full grid grid-cols-1 lg:grid-cols-2 mt-5 mb-14 gap-3">
             @foreach($posts as $post)
-                <a href="" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 overflow-hidden">
-                    <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="{{ asset('images/'. $post->banner) }}" alt="{{ $post->title }}">
+            @php
+        $wrappedDescription = substr(strip_tags($post->deskripsi), 0, 100);
+        $wrappedDescription .= strlen(strip_tags($post->deskripsi)) > 100 ? '...' : '';
+        @endphp
+        <a href="{{ route('post.detail', ['id' => $post->post_id]) }}" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 overflow-hidden">
+                    <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"  src="{{ asset('storage/' . $post->banner) }}" alt="{{ $post->title }}">
                     <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden">
                         <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">{{ $post->category->name}}</span>
                         <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">{{ $post->title }}</h5>
                         <div class="text-xs text-slate-500 mb-2">From: {{ $post->admin->nama }}</div>
-                        <p class="mb-5 font-normal text-gray-700">{{ $post->deskripsi }}</p>
+                        <p class="mb-5 font-normal text-gray-700">
+                    {{ substr($wrappedDescription, 0, 100) }}
+                    {{ strlen($wrappedDescription) > 100 ? '...' : '' }}
+                </p>
                         <div class="flex w-full justify-end text-xs text-slate-500">Published at: {{ $post->published_at->format('l, d F Y') }}</div>
                     </div>
                 </a>

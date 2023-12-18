@@ -35,21 +35,22 @@
         </div>
     </div>
     <div class="p-0 sm:p-4">
-    <div class="p-5 bg-white rounded-lg border border-gray-200">
-        <h1 class="text-md font-medium text-slate-700 mb-2">Isi Pengumuman</h1>
-        <hr>
-        <div class="mt-4">
-            <h1 class="text-3xl font-bold text-slate-800">{{ $post->title }}</h1>
-            @php
-                $wrappedDescription = wordwrap($post->deskripsi, 117, "\n", true);
-            @endphp
-            <p>{!! nl2br(e($wrappedDescription)) !!}</p>
+        <div class="p-5 bg-white rounded-lg border border-gray-200">
+            <h1 class="text-md font-medium text-slate-700 mb-2">Isi Pengumuman</h1>
+            <hr>
+            <div class="mt-4">
+                <h1 class="text-3xl font-bold text-slate-800">{{ $post->title }}</h1>
+                @php
+                $cleanedDescription = strip_tags($post->deskripsi);
+                $wrappedDescription = wordwrap($cleanedDescription, 117, "\n", true);
+                @endphp
+                <p>{!! nl2br(e($wrappedDescription)) !!}</p>
+            </div>
+
         </div>
     </div>
-</div>
     <div class="pl-4">
-    <a href="/post/"
-            class="inline-flex items-center px-5 py-2.5 mt-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800">
+        <a href="/post/" class="inline-flex items-center px-5 py-2.5 mt-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800">
             Kembali
         </a>
     </div>

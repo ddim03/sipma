@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('admin_id');
             $table->string('nama');
             $table->text('deskripsi');
-            $table->string('nama_file');
+            $table->string('pdf');
             $table->timestamps();
 
             $table->foreign('admin_id')->references('admin_id')->on('admin');

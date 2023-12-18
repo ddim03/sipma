@@ -18,7 +18,7 @@ class Arsip extends Model
         'admin_id',
         'nama',
         'deskripsi',
-        'created_at',
+        'pdf'
     ];
     // Relasi ke tabel Admin
     public function admin()

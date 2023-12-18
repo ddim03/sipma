@@ -8,10 +8,10 @@
         <h1 class="text-3xl font-bold text-slate-800 mt-20 sm:mt-0 mb-1.5">Buat Pengumuman</h3>
             <section class="bg-white dark:bg-gray-900 mt-4 rounded-lg">
                 <div class=" p-4 sm:p-6 ">
-                    <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('post.store') }}" method="post" id="createPostForm" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="admin_id" value="{{ Auth::guard('admin')->user()->admin_id }}">
-                    <input type="hidden" name="category_id" value="{{ Auth::guard('admin')->user()->admin_id }}">
+                    <input type="hidden" name="admin_id" value="{{ auth()->user()->admin_id }}">
+                    <input type="hidden" name="category_id" value="{{ auth()->user()->admin_id }}">
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="w-full">
                                 <label for="judul" class="block mb-2 font-medium text-gray-900 dark:text-white">
@@ -63,15 +63,17 @@
                                             class="w-full h-full opacity-0 absolute top-0 left-0 cursor-pointer"/>
                                     </label>
                                 </div>
-
+                                @if($errors->has('banner'))
+                                    <p class="text-l text-red-500 mt-1">{{ $errors->first('banner') }}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="flex gap-3">
-                            <button type="submit"
+                            <button type="submit" id="simpanButton"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Simpan
                             </button>
-                            <a href="/post/index"
+                            <a href="/post"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-gray-800 border border-gray-200 rounded-lg">
                                 Batal
                             </a>
@@ -81,17 +83,17 @@
             </section>
     </div>
 </main>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const form = document.querySelector('form');
+        const createPostForm = document.getElementById('createPostForm');
+        const simpanButton = document.getElementById('simpanButton');
 
-        form.addEventListener('submit', function (event) {
+        createPostForm.addEventListener('submit', function (event) {
             event.preventDefault();
 
             Swal.fire({
                 title: 'Apakah Anda yakin?',
-                text: 'Pengumuman akan disimpan.',
+                text: 'Pengumuman akan ditambahkan.',
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -100,13 +102,8 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Lanjutkan dengan menyubmit formulir jika pengguna menekan "Ya"
-                    form.submit();
-                    Swal.fire(
-                        'Pengumuman Ditambahkan!',
-                        'Pengumuman Anda berhasil ditambahkan.',
-                        'success'
-                    );
+                    simpanButton.disabled = true;
+                    createPostForm.submit();
                 }
             });
         });

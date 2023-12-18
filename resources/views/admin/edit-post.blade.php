@@ -70,9 +70,11 @@
                                             class="w-full h-full opacity-0 absolute top-0 left-0 cursor-pointer"
                                             name="banner" />
                                     </label>
-                                    <img src="{{ asset('/images/'. $post->banner) }}" class="w-48 h-auto" alt="">
-                                        alt="">
+                                    <img src="{{ Storage::url('/' . $post->banner) }}" class="w-48 h-auto" alt="">
                                 </div>
+                                @if($errors->has('banner'))
+                                    <p class="text-l text-red-500 mt-1">{{ $errors->first('banner') }}</p>
+                                @endif
                             </div>
                         </div>
 
@@ -91,7 +93,6 @@
             </section>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -101,9 +102,10 @@
         editPostForm.addEventListener('submit', function (event) {
             event.preventDefault();
 
+           
             Swal.fire({
                 title: 'Apakah Anda yakin?',
-                text: 'Pengumuman akan diperbarui.',
+                text: 'Pengumuman akan ditambahkan.',
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -112,18 +114,8 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Disable button untuk menghindari pengiriman ganda
                     simpanButton.disabled = true;
-
-                    // Lanjutkan dengan menyubmit formulir jika pengguna menekan "Ya"
                     editPostForm.submit();
-
-                    // Tampilkan alert bahwa pengumuman berhasil diperbarui
-                    Swal.fire(
-                        'Pengumuman Diperbarui!',
-                        'Pengumuman Anda berhasil diperbarui.',
-                        'success'
-                    );
                 }
             });
         });

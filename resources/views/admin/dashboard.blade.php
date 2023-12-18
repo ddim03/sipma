@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="flex sm:flex-col items-center gap-3 sm:gap-0 sm:items-start justify-center">
-                    <p class="sm:mb-1 text-4xl font-black">6</p>
+                    <p class="sm:mb-1 text-4xl font-black">{{ $totalArsips }}</p>
                     <p class="text-violet-500 leading-tight text-md sm:text-sm">Arsip<br>diupload</p>
                 </div>
             </div>
@@ -73,17 +73,10 @@
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <form action="{{ route('post.search') }}" method="GET" class="w-full">
-    <div class="relative flex items-center w-full">
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-            </svg>
-        </div>
-        <input type="text" name="search" class="w-full py-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari judul pengumuman">
-    </div>
-</form>
-</div>
+                <input type="text" id="searchInput" name="search" 
+                class="w-full py-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari judul pengumuman">
+
+            </div>
             <div class="overflow-x-auto pt-4 bg-white rounded-b-lg">
                 <table class="w-full text-sm text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-200 text-center">
@@ -147,4 +140,50 @@
         </div>
     </div>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Dapatkan input field dan tbody dari tabel
+        const searchInput = document.getElementById('searchInput');
+        const tableBody = document.querySelector('tbody');
+
+        // Tambahkan event listener ke input field
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+
+            // Loop melalui setiap baris di tbody
+            Array.from(tableBody.children).forEach(row => {
+                const title = row.querySelector('.text-ellipsis').textContent.toLowerCase();
+
+                // Periksa apakah judul mengandung istilah pencarian
+                if (title.includes(searchTerm)) {
+                    row.style.display = ''; // Tampilkan baris
+                } else {
+                    row.style.display = 'none'; // Sembunyikan baris
+                }
+            });
+        });
+    });
+</script>
+@if(session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Cek apakah alert sudah ditampilkan sebelumnya
+                if (!localStorage.getItem('alertShown')) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login Berhasil!',
+                        text: 'Selamat Datang!',
+                    });
+
+                    // Set alertShown ke true agar alert tidak ditampilkan lagi
+                    localStorage.setItem('alertShown', true);
+                }
+            });
+        </script>
+    @endif
+
+    <script>
+        // Bersihkan status alert setelah berpindah halaman
+        localStorage.removeItem('alertShown');
+    </script>
 @endsection
