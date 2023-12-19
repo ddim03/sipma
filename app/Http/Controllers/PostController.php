@@ -2,37 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post; // Pastikan namespace-nya sesuai dengan struktur direktori Anda
-use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\Admin;
-use Carbon\Carbon;
+use App\Models\Post;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        return view('home');
+    }
 
-        foreach ($posts as $post) {
-            $post->published_at = Carbon::parse($post->published_at);
-        }
+    public function getPostByCategory(Category $category)
+    {
+        return view('posts-by-category', [
+            'title' => $category->nama,
+        ]);
+    }
 
-        return view('home', ['posts' => $posts]);
+    public function show(Post $post)
+    {
+        return view('detail', ['post' => $post]);
+    }
+
+    public function search($keyword)
+    {
+        return view('search', ['keyword' => $keyword]);
     }
 }
-
-
-
-// class PostController extends Controller
-// {
-//     public function index()
-// {
-//     $posts = Post::orderBy('published_at', 'desc')->get(); // Mengambil data terbaru
-//     foreach ($posts as $post) {
-//         $post->published_at = $post->published_at->toDateString(); // Konversi ke format tanggal
-//     }
-//     return view('home', ['posts' => $posts]);
-// }
-
-// }

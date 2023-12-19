@@ -9,6 +9,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/search.js",
                 "resources/js/upload.js",
+                "resources/js/uploadpdf.js",
                 "resources/js/slug.js",
             ],
             refresh: true,

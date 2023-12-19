@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\ArsipController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
-
+use App\Livewire\SearchData;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,36 +19,26 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/akademik', function () {
-    return view('posts-by-category');
-});
-
-Route::get('/login', function () {
-    return view('admin.login');
-});
-
 Route::get('/', [PostController::class, 'index']);
-
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+Route::get('/categories/{category:nama}', [PostController::class, 'getPostByCategory']);
+Route::get('/detail/{post:slug}', [PostController::class, 'show']);
+Route::get('/search/{search}', [PostController::class, 'search'])->name('post.search');
+// Route::get('/search', SearchData::class);
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [LoginController::class, 'index']);
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 });
 
-Route::get('/post/index', function () {
-    return view('admin.posts');
-});
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/arsip/index', function () {
-    return view('admin.arsip');
-});
+    Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/post/create', function () {
-    return view('admin.create-post');
-});
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::get('/post/view', function () {
-    return view('admin.view-post');
-});
+    Route::resource('post', AdminPostController::class);
+    Route::get('post/review/{post:slug}', [AdminPostController::class, 'review'])->name('post.review');
+    Route::put('post/revisi/{post:slug}', [AdminPostController::class, 'revisi'])->name('post.revisi');
+    Route::put('post/validasi/{post:slug}', [AdminPostController::class, 'validasi'])->name('post.validasi');
 
-Route::get('/post/edit', function () {
-    return view('admin.edit-post');
+    Route::resource('/arsip', ArsipController::class);
 });

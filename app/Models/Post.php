@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -20,19 +20,19 @@ class Post extends Model
         'isi',
         'is_validated',
     ];
-    // Relasi ke tabel Category
+
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-    // Relasi ke tabel Admin
+
     public function admin()
     {
         return $this->belongsTo(Admin::class);
     }
-    // Misalkan ada sebuah method untuk mengambil data terbaru dengan paginate
-    public static function getLatestPosts()
+
+    public function getRouteKeyName(): string
     {
-        return self::latest()->paginate(4);
+        return 'slug';
     }
 }

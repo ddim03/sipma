@@ -20,10 +20,6 @@ class DatabaseSeeder extends Seeder
                 'slug' => 'akademik',
             ],
             [
-                'nama' => 'Kegiatan Belajar Mengajar',
-                'slug' => 'kbm',
-            ],
-            [
                 'nama' => 'Kemahasiswaan',
                 'slug' => 'kemahasiswaan',
             ]
@@ -33,12 +29,6 @@ class DatabaseSeeder extends Seeder
             [
                 'nama' => 'Admin Akademik',
                 'username' => 'admin-akademik',
-                'password' => bcrypt('12345'),
-                'is_kaprodi' => false
-            ],
-            [
-                'nama' => 'Admin KBM',
-                'username' => 'admin-kbm',
                 'password' => bcrypt('12345'),
                 'is_kaprodi' => false
             ],

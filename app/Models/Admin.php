@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Autenticatable;
 
-class Admin extends Model
+
+class Admin extends Autenticatable
 {
     protected $table = 'admins'; // Nama tabel dalam database
 
