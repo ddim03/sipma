@@ -8,17 +8,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="{{ asset('tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: 'textarea#isi',
+            selector: 'textarea#deskripsi',
             toolbar_mode: 'floating',
             plugins: 'lists link',
             toolbar: 'undo redo | blocks | fontsize | bold italic underline | alignleft aligncenter alignright | indent outdent | bullist numlist | link',
             menubar : false,
         });
     </script>
+
     <title>SIPMA | Admin</title>
 </head>
 

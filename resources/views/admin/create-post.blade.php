@@ -8,14 +8,16 @@
         <h1 class="text-3xl font-bold text-slate-800 mt-20 sm:mt-0 mb-1.5">Buat Pengumuman</h3>
             <section class="bg-white dark:bg-gray-900 mt-4 rounded-lg">
                 <div class=" p-4 sm:p-6 ">
-                    <form action="#">
-                        <input type="hidden" name="category_id" value="">
+                    <form action="{{ route('post.store') }}" method="post" id="createPostForm" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="admin_id" value="{{ auth()->user()->admin_id }}">
+                    <input type="hidden" name="category_id" value="{{ auth()->user()->admin_id }}">
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="w-full">
                                 <label for="judul" class="block mb-2 font-medium text-gray-900 dark:text-white">
                                     Judul
                                 </label>
-                                <input type="text" name="judul" id="judul"
+                                <input type="text" name="title" id="title"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Masukan judul pengumuman" required="" autocomplete="false">
                             </div>
@@ -23,15 +25,15 @@
                                 <label for="slug" class="block mb-2 font-medium text-gray-900 dark:text-white">
                                     Slug
                                 </label>
-                                <input type="text" name="slug" id="slug"
+                                <input type="text" name="slug" id="slug" readonly
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required="" autocomplete="false" disabled="true">
+                                    required="" autocomplete="false">
                             </div>
                             <div class="sm:col-span-2">
-                                <label for="isi" class="block mb-2 font-medium text-gray-900 dark:text-white">
+                                <label for="deskripsi" class="block mb-2 font-medium text-gray-900 dark:text-white">
                                     Isi Pengumuman
                                 </label>
-                                <textarea id="isi" class="w-full"><h4>Hello world!!</h4></textarea>
+                                <textarea id="deskripsi" name="deskripsi" class="w-full"><h4>Hello world!!</h4></textarea>
                             </div>
                             <div class="sm:col-span-2">
                                 <label class="block mb-2 font-medium text-gray-900" for="banner">
@@ -57,20 +59,21 @@
                                                 SVG, PNG, JPG (MAX. 2MB)
                                             </p>
                                         </div>
-                                        <input id="banner" type="file"
-                                            class="w-full h-full opacity-0 absolute top-0 left-0 cursor-pointer"
-                                            name="banner" />
+                                        <input id="banner" name="banner" type="file"
+                                            class="w-full h-full opacity-0 absolute top-0 left-0 cursor-pointer"/>
                                     </label>
                                 </div>
-
+                                @if($errors->has('banner'))
+                                    <p class="text-l text-red-500 mt-1">{{ $errors->first('banner') }}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="flex gap-3">
-                            <button type="submit"
+                            <button type="submit" id="simpanButton"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Simpan
                             </button>
-                            <a href="/post/index"
+                            <a href="/post"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-gray-800 border border-gray-200 rounded-lg">
                                 Batal
                             </a>
@@ -80,4 +83,31 @@
             </section>
     </div>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const createPostForm = document.getElementById('createPostForm');
+        const simpanButton = document.getElementById('simpanButton');
+
+        createPostForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: 'Pengumuman akan ditambahkan.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Simpan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    simpanButton.disabled = true;
+                    createPostForm.submit();
+                }
+            });
+        });
+    });
+</script>
+
 @endsection

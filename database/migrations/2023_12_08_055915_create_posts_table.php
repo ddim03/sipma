@@ -12,20 +12,22 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id('id'); // Menggunakan 'post_id' sebagai primary key
+            $table->id('post_id'); // Menggunakan 'post_id' sebagai primary key
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('admin_id');
-            $table->string('judul');
+            $table->string('title');
             $table->string('slug');
-            $table->string('gambar')->nullable();
-            $table->text('isi');
+            $table->string('banner');
+            $table->text('deskripsi');
+            $table->date('published_at');
             $table->boolean('is_validated')->default(false);
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('category_id')->on('categories');
 
             // Mengganti foreign key constraint untuk 'admin_id'
-            $table->foreign('admin_id')->references('id')->on('admins');
+            $table->foreign('admin_id')->references('admin_id')->on('admin');
+       
         });
     }
 

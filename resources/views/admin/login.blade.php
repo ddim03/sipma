@@ -1,6 +1,8 @@
 @extends('admin.layouts.main')
 
 @section('content')
+         <!-- Masukkan script SweetAlert -->
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <section class="min-h-screen bg-gray-50 bg-cover bg-center">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
         <a href="#" class="flex items-center mb-6 text-lg leading-none font-semibold text-gray-900">
@@ -12,11 +14,12 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Masuk ke akun anda
                 </h1>
-                <form class="space-y-4 md:space-y-6" action="#">
+                <form class="space-y-4 md:space-y-6" action="{{ route('admin.login') }}" method="POST">
+                @csrf
                     <div>
                         <label for="username"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                        <input type="text" name="email" id="username"
+                        <input type="text" name="username" id="username"
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="username" required="">
                     </div>
@@ -33,5 +36,18 @@
             </div>
         </div>
     </div>
+
+@if($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Username dan Password Anda Salah!',
+                text: '{{ $errors->first() }}',
+            });
+        });
+    </script>
+@endif
+
 </section>
 @endsection

@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>SIPMA | Sistem Informasi Pengumuman dan Arsip</title>
 </head>
@@ -44,10 +47,6 @@
                             <li>
                                 <a href="/akademik"
                                     class="block py-2 pl-3 pr-4 {{ Request::is('akademik') ? 'active' : 'base' }} rounded md:border-0 md:p-0">Akademik</a>
-                            </li>
-                            <li>
-                                <a href="/kbm"
-                                    class="block py-2 pl-3 pr-4 {{ Request::is('kbm') ? 'active' : 'base' }} rounded md:border-0 md:p-0">KBM</a>
                             </li>
                             <li>
                                 <a href="/kemahasiswaan"

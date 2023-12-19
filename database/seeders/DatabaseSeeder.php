@@ -16,29 +16,19 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                'nama' => 'Akademik',
+                'name' => 'Akademik',
                 'slug' => 'akademik',
             ],
             [
-                'nama' => 'Kegiatan Belajar Mengajar',
-                'slug' => 'kbm',
-            ],
-            [
-                'nama' => 'Kemahasiswaan',
+                'name' => 'Kemahasiswaan',
                 'slug' => 'kemahasiswaan',
             ]
         ]);
 
-        DB::table('admins')->insert([
+        DB::table('admin')->insert([
             [
                 'nama' => 'Admin Akademik',
                 'username' => 'admin-akademik',
-                'password' => bcrypt('12345'),
-                'is_kaprodi' => false
-            ],
-            [
-                'nama' => 'Admin KBM',
-                'username' => 'admin-kbm',
                 'password' => bcrypt('12345'),
                 'is_kaprodi' => false
             ],

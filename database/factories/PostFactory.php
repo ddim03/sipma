@@ -20,21 +20,22 @@ class PostFactory extends Factory
     {
 
         $paragraps = fake()->paragraphs();
-        $isi = [];
+        $deskripsi = [];
         for ($i = 0; $i < count($paragraps); $i++) {
             if ($i == 0) {
-                array_push($isi, "<h1>" . $paragraps[$i] . "</h1>");
+                array_push($deskripsi, "<h1>" . $paragraps[$i] . "</h1>");
             }
-            array_push($isi, "<p>" . $paragraps[$i] . "</p>");
+            array_push($deskripsi, "<p>" . $paragraps[$i] . "</p>");
         }
-        $isi = implode('', $isi);
+        $deskripsi = implode('', $deskripsi);
 
         return [
-            'judul' => fake()->sentence(),
+            'title' => fake()->sentence(),
             'slug' => fake()->slug(),
-            'gambar' => fake()->numberBetween(1, 2) . '.jpg',
-            'isi' => $isi,
+            'banner' => fake()->numberBetween(1, 2) . '.jpg',
+            'deskripsi' => $deskripsi,
             'is_validated' => fake()->boolean(),
+            'published_at' => fake()->date,
             'admin_id' => fake()->numberBetween(1, 3),
             'category_id' => fake()->numberBetween(1, 3),
         ];

@@ -20,7 +20,7 @@ class ArsipFactory extends Factory
             'admin_id' => fake()->numberBetween(1, 3),
             'nama' => fake()->sentence(),
             'deskripsi' => fake()->paragraph(),
-            'nama_file' => fake()->numberBetween(1, 2) . '.pdf',
+            'pdf' => fake()->numberBetween(1, 2) . '.pdf',
         ];
     }
 }

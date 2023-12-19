@@ -16,7 +16,7 @@
                     </svg>
                 </div>
                 <div class="flex sm:flex-col items-center gap-3 sm:gap-0 sm:items-start justify-center">
-                    <p class="sm:mb-1 text-4xl font-black">10</p>
+                    <p class="sm:mb-1 text-4xl font-black">{{ $totalPosts }}</p>
                     <p class="text-blue-600 leading-tight text-md sm:text-sm">Total<br>pengumuman</p>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                     </svg>
                 </div>
                 <div class="flex sm:flex-col items-center gap-3 sm:gap-0 sm:items-start justify-center">
-                    <p class="sm:mb-1 text-4xl font-black">4</p>
+                    <p class="sm:mb-1 text-4xl font-black">{{ $validatedPosts }}</p>
                     <p class="text-red-500 leading-tight text-md sm:text-sm">Pengumuman<br>divalidasi</p>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     </svg>
                 </div>
                 <div class="flex sm:flex-col items-center gap-3 sm:gap-0 sm:items-start justify-center">
-                    <p class="sm:mb-1 text-4xl font-black">6</p>
+                    <p class="sm:mb-1 text-4xl font-black">{{ $waitingValidationPosts }}</p>
                     <p class="text-green-500 leading-tight text-md sm:text-sm">Pengumuman<br>belum divalidasi</p>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="flex sm:flex-col items-center gap-3 sm:gap-0 sm:items-start justify-center">
-                    <p class="sm:mb-1 text-4xl font-black">6</p>
+                    <p class="sm:mb-1 text-4xl font-black">{{ $totalArsips }}</p>
                     <p class="text-violet-500 leading-tight text-md sm:text-sm">Arsip<br>diupload</p>
                 </div>
             </div>
@@ -73,9 +73,9 @@
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input type="search" id="default-search"
-                    class=" w-full py-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Cari judul pengumuman">
+                <input type="text" id="searchInput" name="search" 
+                class="w-full py-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari judul pengumuman">
+
             </div>
             <div class="overflow-x-auto pt-4 bg-white rounded-b-lg">
                 <table class="w-full text-sm text-gray-500 dark:text-gray-400">
@@ -102,50 +102,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4 text-center">1</td>
-                            <td class="px-6 py-4 text-ellipsis">
-                                Program Magang Mandiri Telkomsel
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                Kegiatan Belajar Mengajar
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                Dimas Gilang Dwi Aji
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                Senin, 02 November 2023
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                <span
-                                    class="bg-green-50 border border-green-100 text-green-600 text-xs font-medium me-2 px-3 py-1.5 rounded-md">
-                                    Validated
-                                </span>
-                            </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4 text-center">2</td>
-                            <td class="px-6 py-4">
-                                Lomba PKM POLINEMA PSDKU Kediri
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                Akademik
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                Dimas Gilang Dwi Aji
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                Senin, 02 November 2023
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                <span
-                                    class="bg-red-50 border border-red-100 text-red-600 text-xs font-medium me-2 px-3 py-1.5 rounded-md">
-                                    Waiting
-                                </span>
-                            </td>
-                        </tr>
+                        @foreach ($posts as $readadmin => $post)
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <td class="px-6 py-4 text-center">{{ $readadmin + 1 }}</td>
+                        <td class="px-6 py-4 text-ellipsis">{{ $post->title }}</td>
+                        <td class="px-6 py-4 text-center">{{ $post->category->name ?? 'None' }}</td>
+                        <td class="px-6 py-4 text-center">{{ $post->admin->nama ?? 'None' }}</td>
+                        <td class="px-6 py-4 text-center">{{ $post->published_at->format('l, d F Y') }}</td>
+                        <td class="px-6 py-4 text-center">
+                            <span class="{{ $post->is_validated ? 'bg-green-50 border border-green-100 text-green-600' : 'bg-red-50 border border-red-100 text-red-600' }} text-xs font-medium me-2 px-3 py-1.5 rounded-md">
+                                {{ $post->is_validated ? 'Validated' : 'Waiting' }}
+                            </span>
+                        </td>
+                    </tr>
+                @endforeach
                     </tbody>
                 </table>
             </div>
@@ -170,4 +140,50 @@
         </div>
     </div>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Dapatkan input field dan tbody dari tabel
+        const searchInput = document.getElementById('searchInput');
+        const tableBody = document.querySelector('tbody');
+
+        // Tambahkan event listener ke input field
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+
+            // Loop melalui setiap baris di tbody
+            Array.from(tableBody.children).forEach(row => {
+                const title = row.querySelector('.text-ellipsis').textContent.toLowerCase();
+
+                // Periksa apakah judul mengandung istilah pencarian
+                if (title.includes(searchTerm)) {
+                    row.style.display = ''; // Tampilkan baris
+                } else {
+                    row.style.display = 'none'; // Sembunyikan baris
+                }
+            });
+        });
+    });
+</script>
+@if(session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Cek apakah alert sudah ditampilkan sebelumnya
+                if (!localStorage.getItem('alertShown')) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login Berhasil!',
+                        text: 'Selamat Datang!',
+                    });
+
+                    // Set alertShown ke true agar alert tidak ditampilkan lagi
+                    localStorage.setItem('alertShown', true);
+                }
+            });
+        </script>
+    @endif
+
+    <script>
+        // Bersihkan status alert setelah berpindah halaman
+        localStorage.removeItem('alertShown');
+    </script>
 @endsection
