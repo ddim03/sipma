@@ -402,8 +402,8 @@ class PostController extends Controller
             })
             ->when(!$request->filled('show_all'), function ($queryBuilder) {
                 return $queryBuilder->paginate(4);
-            })
-            ->get();
+            });
+
         // Membuat HTML untuk hasil pencarian
         foreach ($posts as $post) {
             $wrappedDescription = substr(strip_tags($post->deskripsi), 0, 100);
@@ -440,5 +440,6 @@ class PostController extends Controller
         return response()->json($data);
     }
 }
+
 
 }
