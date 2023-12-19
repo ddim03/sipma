@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
+use App\Livewire\SearchData;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,8 @@ use App\Http\Controllers\PostController;
 Route::get('/', [PostController::class, 'index']);
 Route::get('/categories/{category:nama}', [PostController::class, 'getPostByCategory']);
 Route::get('/detail/{post:slug}', [PostController::class, 'show']);
-
+Route::get('/search/{search}', [PostController::class, 'search'])->name('post.search');
+// Route::get('/search', SearchData::class);
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, 'index']);
     Route::post('/login', [LoginController::class, 'authenticate'])->name('login');

@@ -47,10 +47,6 @@
             </li>
         </ol>
     </nav>
-    @if (Request::is('categories/akademik'))
     @livewire('akademik-data')
-    @else
-    @livewire('kemahasiswaan-data')
-    @endif
 </section>
 @endsection
