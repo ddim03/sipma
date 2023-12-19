@@ -51,7 +51,7 @@
                     </svg>
                 </div>
                 <input type="search" id="default-search"
-                    class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                    class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Cari judul pengumuman...">
             </div>
         </div>
@@ -62,7 +62,7 @@
         <a href="/detail/{{$post->slug}}"
             class="flex flex-col items-start bg-white border border-gray-200 rounded shadow md:flex-row hover:bg-gray-100 overflow-hidden">
             <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l"
-                src="{{ asset('images/'. $post->gambar) }}" alt="{{ $post->judul }}">
+                src="{{ asset('storage/'. $post->gambar) }}" alt="{{ $post->judul }}">
             <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden">
                 <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">
                     {{ $post->category->nama}}

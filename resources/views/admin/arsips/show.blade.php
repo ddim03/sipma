@@ -10,30 +10,26 @@
             <div class="bg-white p-4 sm:p-6 rounded border w-full md:w-1/2 flex flex-col justify-around">
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Nama</h2>
-                    <p class="text-sm text-slate-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Accusamus ducimus voluptates
+                    <p class="text-sm text-slate-700">
+                        {{ $arsip->nama }}
                     </p>
                 </div>
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Deskripsi</h2>
                     <p class="text-sm text-slate-700 text-justify">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis debitis tempora
-                        aperiam explicabo, tempore aliquam aliquid, eos id doloremque necessitatibus quia quisquam
-                        ex ipsum cumque autem ratione molestias repellat praesentium est, esse accusantium nisi! Eum
-                        ut nemo, alias cum dolorum quisquam totam numquam quidem praesentium mollitia error aliquam
-                        facere ad.
+                        {{$arsip->deskripsi}}
                     </p>
                 </div>
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Admin</h2>
                     <p class="text-sm text-slate-700">
-                        Dimas Gilang Dwi Aji
+                        {{ $arsip->admin->nama }}
                     </p>
                 </div>
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Uploaded At</h2>
                     <p class="text-sm text-slate-700">
-                        Senin, 02 November 2023
+                        {{ $arsip->created_at->format('l, d F Y') }}
                     </p>
                 </div>
             </div>
@@ -42,7 +38,7 @@
                     Preview File
                 </label>
                 <div class="w-full">
-                    <embed src="{{ Vite::asset('public/storage/sample.pdf') }}" type="" class="w-full h-[400px]">
+                    <embed src="{{ asset('storage/'.$arsip->nama_file) }}" type="" class="w-full h-[400px]">
                 </div>
             </div>
         </section>

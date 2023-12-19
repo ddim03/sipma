@@ -47,14 +47,16 @@
         <a href="/detail/{{$post->slug}}"
             class="flex flex-col items-start bg-white border border-gray-200 rounded shadow md:flex-row hover:bg-gray-100 overflow-hidden">
             <img class="object-cover object-center w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l"
-                src="{{ asset('images/'. $post->gambar) }}" alt="{{ $post->judul }}">
-            <div class="flex flex-col justify-between px-4 py-3 leading-normal overflow-hidden">
-                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">
-                    {{ $post->category->nama}}
-                </span>
-                <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">{{ $post->judul }}</h5>
-                <div class="text-xs text-slate-500 mb-2">From {{ $post->admin->nama }}</div>
-                <p class="mb-5 font-normal text-gray-700 te">{{ $post->isi }}</p>
+                src="{{ asset('storage/'. $post->gambar) }}" alt="{{ $post->judul }}">
+            <div class="flex flex-col justify-around px-4 py-3 leading-normal overflow-hidden h-full">
+                <div>
+                    <span class=" block bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded mb-2 w-fit">
+                        {{ $post->category->nama}}
+                    </span>
+                    <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">{{ $post->judul }}</h5>
+                    <div class="text-xs text-slate-500 mb-2">From {{ $post->admin->nama }}</div>
+                    <p class="mb-5 font-normal text-gray-700 te">{{ $post->isi }}</p>
+                </div>
                 <div class="flex w-full justify-end text-xs text-slate-500">
                     Published at {{ $post->created_at->format('l, d F Y') }}
                 </div>

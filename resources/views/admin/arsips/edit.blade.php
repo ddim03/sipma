@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('admin.layouts.main-form')
 
 @section('content')
 @include('admin.partials.navbar')
@@ -8,15 +8,19 @@
         <h1 class="text-3xl font-bold text-slate-800 mt-20 sm:mt-0 mb-1.5">Update Arsip</h1>
         <section class="mt-4 flex flex-col-reverse md:flex-row gap-2">
             <div class="bg-white p-4 sm:p-6 rounded border w-full md:w-1/2">
-                <form action="#">
-                    <input type="hidden" name="category_id" value="">
+                <form action="{{ route('arsip.update', $arsip->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="oldPdf" value="{{ $arsip->nama_file }}">
                     <div class="w-full mb-4">
                         <label for="judul" class="block mb-2 font-medium text-gray-900">
                             Nama Arsip <span class="text-red-600">*</span>
                         </label>
-                        <input type="text" name="judul" id="judul"
+                        <input type="text" name="nama" id="nama"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                            placeholder="Masukan nama arsip" required autocomplete="false">
+                            placeholder="Masukan nama arsip" required autocomplete="false"
+                            value="{{ old('nama',$arsip->nama ) }}">
+                        @error('nama_file')
                         <p class="mt-2 ml-1 text-sm text-red-600 font-medium flex items-center gap-2">
                             <svg class="w-4 h-4 text-red-600 dark:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -26,14 +30,16 @@
                             </svg>
                             Invalid input
                         </p>
+                        @enderror
                     </div>
                     <div class="w-full mb-4">
-                        <label for="isi" class="block mb-2 font-medium text-gray-900">
+                        <label for="deskripsi" class="block mb-2 font-medium text-gray-900">
                             Deskripsi Arsip<span class="text-red-600">*</span>
                         </label>
-                        <textarea id="message" rows="4"
+                        <textarea id="deskripsi" rows="4" name="deskripsi"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700"
-                            placeholder="Tulis deskripsi arsip"></textarea>
+                            placeholder="Tulis deskripsi arsip">{{ old('nama',$arsip->nama ) }}</textarea>
+                        @error('nama_file')
                         <p class="mt-2 ml-1 text-sm text-red-600 font-medium flex items-center gap-2">
                             <svg class="w-4 h-4 text-red-600 dark:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -43,6 +49,7 @@
                             </svg>
                             Invalid input
                         </p>
+                        @enderror
                     </div>
                     <div class="w-full">
                         <label class="block mb-2 font-medium text-gray-900" for="banner">
@@ -65,6 +72,7 @@
                                     <p class="text-xs text-gray-500" id="file_input_type">
                                         PDF (MAX. 5MB)
                                     </p>
+                                    @error('nama_file')
                                     <p class="mt-2 ml-1 text-sm text-red-600 font-medium flex items-center gap-2">
                                         <svg class="w-4 h-4 text-red-600 dark:text-white" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -74,10 +82,11 @@
                                         </svg>
                                         Invalid input
                                     </p>
+                                    @enderror
                                 </div>
-                                <input id="banner" type="file"
+                                <input id="nama_file" type="file"
                                     class="w-full h-full opacity-0 absolute top-0 left-0 cursor-pointer"
-                                    name="banner" />
+                                    name="nama_file" />
                             </label>
                         </div>
 
@@ -99,7 +108,7 @@
                     Preview File
                 </label>
                 <div class="w-full">
-                    <embed src="{{ Vite::asset('public/storage/sample.pdf') }}" type="" class="w-full h-[600px]">
+                    <embed src="{{ asset('storage/'.$arsip->nama_file) }}" type="" class="w-full h-[600px]">
                 </div>
             </div>
         </section>

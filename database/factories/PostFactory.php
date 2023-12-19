@@ -28,15 +28,15 @@ class PostFactory extends Factory
             array_push($isi, "<p>" . $paragraps[$i] . "</p>");
         }
         $isi = implode('', $isi);
-
+        $id = fake()->numberBetween(1, 2);
         return [
             'judul' => fake()->sentence(),
             'slug' => fake()->slug(),
             'gambar' => fake()->numberBetween(1, 2) . '.jpg',
             'isi' => $isi,
             'is_validated' => fake()->boolean(),
-            'admin_id' => fake()->numberBetween(1, 2),
-            'category_id' => fake()->numberBetween(1, 2),
+            'admin_id' => $id,
+            'category_id' => $id,
         ];
     }
 }

@@ -5,7 +5,7 @@ function flash() {
     flashElement.classList.add("transition-transform");
     flashElement.classList.add("translate-x-0");
     flashElement.style.right = "2rem";
-    const bar = document.querySelector("#bar");
+    const bar = document.querySelector("#barFlash");
     let progress = 100;
     bar.style.width = progress + "%";
 
@@ -62,6 +62,6 @@ deleteButton.forEach((e) => {
     e.addEventListener("click", function () {
         id = this.value;
         const submitData = document.querySelector("#submit-data");
-        submitData.setAttribute("action", `/post/delete/${id}`);
+        submitData.setAttribute("action", `/post/${id}`);
     });
 });

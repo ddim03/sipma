@@ -6,6 +6,35 @@ html {
     scroll-behavior: smooth;
 }
 
+/* @layer base {
+    h1 {
+        @apply text-5xl font-extrabold;
+    }
+    h2 {
+        @apply text-4xl font-bold;
+    }
+
+    h3 {
+        @apply text-3xl font-bold;
+    }
+
+    h4 {
+        @apply text-2xl font-bold;
+    }
+
+    h5 {
+        @apply text-xl font-bold;
+    }
+
+    h6 {
+        @apply text-lg font-bold;
+    }
+
+    p {
+        @apply mb-3 text-gray-600;
+    }
+} */
+
 @layer components {
     .active {
         @apply text-white bg-blue-700 md:text-blue-600 md:bg-transparent;

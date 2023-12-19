@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('is_validated', 1)->paginate(4);
+        $posts = Post::latest()->where('is_validated', 1)->paginate(4);
 
         $posts = $this->removeHTML($posts);
 

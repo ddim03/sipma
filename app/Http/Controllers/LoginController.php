@@ -26,7 +26,9 @@ class LoginController extends Controller
             return redirect()->intended('dashboard')->with('loginSuccess', 'success');
         }
 
-        return back();
+        return back()->withErrors([
+            'username' => 'The provided credentials do not match our records.',
+        ])->onlyInput('username');
     }
 
     public function logout(Request $request)

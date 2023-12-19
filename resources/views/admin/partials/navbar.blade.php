@@ -21,9 +21,28 @@
             <div class="flex items-center">
                 <div class="flex items-center ms-3">
                     @auth
-                    <p class="mr-3 text-gray-700 text-sm hidden md:block font-medium">{{ Auth::user()->nama }}</p>
-                    <img class="w-8 h-8 rounded-full" src="{{ Vite::asset('resources/img/user.svg') }}"
-                        alt="user photo">
+                    <div class="flex items-center">
+                        <div class="flex items-center ms-3">
+                            <div>
+                                <button type="button" class="flex text-sm items-center" aria-expanded="false"
+                                    data-dropdown-toggle="dropdown-user">
+                                    <span class="sr-only">Open user menu</span>
+                                    <p class="mr-3 text-gray-700 text-sm hidden lg:block font-medium mb-0">{{
+                                        Auth::user()->nama }}</p>
+                                    <img class="w-8 h-8 rounded-full" src="{{ Vite::asset('resources/img/user.svg') }}"
+                                        alt="user photo">
+                                </button>
+                            </div>
+                            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
+                                id="dropdown-user">
+                                <div class="px-4 py-3" role="none">
+                                    <p class="text-sm text-gray-900" role="none">
+                                        {{ Auth::user()->nama }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @endauth
                 </div>
             </div>

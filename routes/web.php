@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\ArsipController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
@@ -27,29 +29,14 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard.index');
-    });
-
     Route::post('/logout', [LoginController::class, 'logout']);
 
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+
     Route::resource('post', AdminPostController::class);
-    Route::get('post/review/{post:slug}', [AdminPostController::class, 'review']);
-    Route::post('post/validate/{post:slug}', [AdminPostController::class, 'validasi']);
+    Route::get('post/review/{post:slug}', [AdminPostController::class, 'review'])->name('post.review');
+    Route::put('post/revisi/{post:slug}', [AdminPostController::class, 'revisi'])->name('post.revisi');
+    Route::put('post/validasi/{post:slug}', [AdminPostController::class, 'validasi'])->name('post.validasi');
 
-    Route::get('/arsip', function () {
-        return view('admin.arsips.index');
-    });
-
-    Route::get('/arsip/create', function () {
-        return view('admin.arsips.create');
-    });
-
-    Route::get('/arsip/edit', function () {
-        return view('admin.arsips.edit');
-    });
-
-    Route::get('/arsip/show', function () {
-        return view('admin.arsips.show');
-    });
+    Route::resource('/arsip', ArsipController::class);
 });

@@ -10,37 +10,53 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 w-4/5">
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Judul</h2>
-                    <p class="text-sm text-slate-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Accusamus ducimus voluptates
+                    <p class="text-sm text-slate-700">
+                        {{ $post->judul }}
                     </p>
                 </div>
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Slug</h2>
                     <p class="text-sm text-slate-700">
-                        this-is-slug
+                        {{ $post->slug }}
                     </p>
                 </div>
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Admin</h2>
                     <p class="text-sm text-slate-700">
-                        Dimas Gilang Dwi Aji
+                        {{ $post->admin->nama }}
                     </p>
                 </div>
                 <div class="w-full">
                     <h2 class="text-md font-medium text-slate-700 mb-2">Kategori</h2>
                     <p class="text-sm text-slate-700">
-                        Kegiatan Belajar Mengajar
+                        {{ $post->category->nama }}
                     </p>
                 </div>
                 <div class="w-full">
-                    <h2 class="text-md font-medium text-slate-700 mb-2">Published At</h2>
+                    <h2 class="text-md font-medium text-slate-700 mb-2">Status</h2>
                     <p class="text-sm text-slate-700">
-                        Senin, 02 November 2023
+                        @if ($post->is_validated == 1)
+                        <span
+                            class="bg-green-50 border border-green-100 text-green-600 text-xs font-medium me-2 px-3 py-1.5 rounded">
+                            Validated
+                        </span>
+                        @else
+                        <span
+                            class="bg-red-50 border border-red-100 text-red-600 text-xs font-medium me-2 px-3 py-1.5 rounded">
+                            Waiting
+                        </span>
+                        @endif
+                    </p>
+                </div>
+                <div class="w-full">
+                    <h2 class="text-md font-medium text-slate-700 mb-2">Created At</h2>
+                    <p class="text-sm text-slate-700">
+                        {{ $post->created_at->format('l, d F Y') }}
                     </p>
                 </div>
             </div>
             <div class="mt-4 sm:mt-0 mx-auto">
-                <img src="https://dummyimage.com/300x400" class="w-36 aspect-auto" alt="">
+                <img src="{{ asset('storage/'.$post->gambar) }}" class="w-36 aspect-auto" alt="{{ $post->judul }}">
             </div>
         </div>
     </div>
@@ -49,20 +65,7 @@
             <h1 class="text-md font-medium text-slate-700 mb-2">Isi Pengumuman</h1>
             <hr>
             <div class="mt-4">
-                <h1 class="text-3xl font-bold text-slate-800">Lorem ipsum dolor sit amet</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, similique molestias! Quas assumenda
-                    voluptate nemo animi recusandae ex aperiam rerum. Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit. Magnam laborum iusto nostrum delectus quidem provident! Nesciunt quasi hic beatae, molestiae,
-                    vero officia saepe odio quo quibusdam porro aspernatur sequi eaque.
-                </p>
-                <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas perspiciatis deleniti dolor,
-                    inventore minima soluta omnis delectus fuga doloremque veniam aut suscipit, doloribus aperiam.
-                    Laudantium asperiores ullam dolorem error dolores cupiditate praesentium velit. Voluptatibus maxime
-                    laborum est delectus saepe quibusdam, quia impedit quisquam exercitationem quidem esse minima ea
-                    quaerat temporibus?
-                </p>
+                {!! $post->isi !!}
             </div>
         </div>
     </div>

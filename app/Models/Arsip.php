@@ -11,12 +11,7 @@ class Arsip extends Model
     protected $table = 'arsips';
     protected $primaryKey = 'id';
 
-    protected $fillable = [
-        'admin_id',
-        'nama',
-        'deskripsi',
-        'created_at',
-    ];
+    protected $guarded = ['id'];
 
     public function admin()
     {

@@ -9,11 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('style')
     <title>SIPMA | Admin</title>
 </head>
 
 <body class="overflow-x-hidden">
     @yield('content')
+    @stack('scripts')
     <script src="{{ asset('js/flash.js') }}"></script>
     <script>
         @if(session('loginSuccess'))

@@ -15,7 +15,7 @@
             selector: 'textarea#isi',
             toolbar_mode: 'floating',
             plugins: 'lists link',
-            toolbar: 'undo redo | blocks | fontsize | bold italic underline | alignleft aligncenter alignright | indent outdent | bullist numlist | link',
+            toolbar: 'undo redo | fontsize | bold italic underline | alignleft aligncenter alignright alignjustify | indent outdent | bullist numlist | link',
             menubar : false,
         });
     </script>
@@ -24,7 +24,7 @@
 
 <body>
     @yield('content')
-    @vite(['resources/js/upload.js', 'resources/js/slug.js'])
+    @vite(['resources/js/upload.js', 'resources/js/slug.js', 'resources/js/uploadpdf.js'])
 </body>
 
 </html>
