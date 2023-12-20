@@ -8,6 +8,16 @@
 @livewireScripts
 @endpush
 
+@if (Request::is('categories/akademik'))
+@section('title')
+Kategori Akademik
+@endsection
+@else
+@section('title')
+Kategori Kemahasiswaan
+@endsection
+@endif
+
 @section('content')
 <section class="h-80 md:h-96 bg-[url('../img/hero.jpg')] bg-cover bg-center">
     <div class="w-full h-80 md:h-96 bg-gray-950 bg-opacity-60 flex items-center ">

@@ -12,7 +12,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
-    <title>SIPMA | Sistem Informasi Pengumuman dan Arsip</title>
+    <title>SIPMA | @yield('title')</title>
 </head>
 
 <body class="bg-gray-50">

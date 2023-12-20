@@ -8,6 +8,11 @@
 @livewireScripts
 @endpush
 
+@section('title')
+Dashboard
+@endsection
+
+
 @section('content')
 @include('admin.partials.navbar')
 @include('admin.partials.sidebar')

@@ -20,7 +20,7 @@
             menubar : false,
         });
     </script>
-    <title>SIPMA | Admin</title>
+    <title>SIPMA | @yield('title')</title>
 </head>
 
 <body>

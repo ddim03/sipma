@@ -1,5 +1,10 @@
 @extends('admin.layouts.main-form')
 
+@section('title')
+Update Pengumuman
+@endsection
+
+
 @section('content')
 @include('admin.partials.navbar')
 @include('admin.partials.sidebar')

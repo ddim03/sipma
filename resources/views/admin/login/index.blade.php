@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+Login
+@endsection
+
 @section('content')
 <section class="min-h-screen bg-gray-50 bg-cover bg-center">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">

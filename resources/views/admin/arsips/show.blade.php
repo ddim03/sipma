@@ -1,5 +1,10 @@
 @extends('admin.layouts.main')
 
+@section('title')
+Detail Arsip
+@endsection
+
+
 @section('content')
 @include('admin.partials.navbar')
 @include('admin.partials.sidebar')
