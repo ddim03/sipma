@@ -1,5 +1,9 @@
 @extends('admin.layouts.main-form')
 
+@section('title')
+Tambah Arsip
+@endsection
+
 @section('content')
 @include('admin.partials.navbar')
 @include('admin.partials.sidebar')

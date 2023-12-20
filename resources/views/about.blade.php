@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title')
+Tentang
+@endsection
+
 @section('content')
 <section class="min-h-screen bg-[url('../img/hero.jpg')] bg-cover bg-center">
     <div class="w-full h-screen bg-gray-950 bg-opacity-60 flex items-center ">

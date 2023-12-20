@@ -8,6 +8,17 @@
 @livewireScripts
 @endpush
 
+@if ($keyword != "all")
+@section('title')
+Hasil Pencarian : {{ $keyword }}
+@endsection
+@else
+@section('title')
+Pengumuman Terbaru
+@endsection
+@endif
+
+
 @section('content')
 <section class="w-full md:w-4/5 px-3 md:px-0 mx-auto max-w-screen-xl mt-24">
     @if ($keyword != "all")

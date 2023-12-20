@@ -8,6 +8,11 @@
 @livewireScripts
 @endpush
 
+@section('title')
+Arsip
+@endsection
+
+
 @section('content')
 @include('admin.partials.navbar')
 @include('admin.partials.sidebar')

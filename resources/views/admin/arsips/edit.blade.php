@@ -1,5 +1,9 @@
 @extends('admin.layouts.main-form')
 
+@section('title')
+Update Arsip
+@endsection
+
 @section('content')
 @include('admin.partials.navbar')
 @include('admin.partials.sidebar')
@@ -20,7 +24,7 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             placeholder="Masukan nama arsip" required autocomplete="false"
                             value="{{ old('nama',$arsip->nama ) }}">
-                        @error('nama_file')
+                        @error('nama')
                         <p class="mt-2 ml-1 text-sm text-red-600 font-medium flex items-center gap-2">
                             <svg class="w-4 h-4 text-red-600 dark:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -39,7 +43,7 @@
                         <textarea id="deskripsi" rows="4" name="deskripsi"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700"
                             placeholder="Tulis deskripsi arsip">{{ old('nama',$arsip->nama ) }}</textarea>
-                        @error('nama_file')
+                        @error('deskripsi')
                         <p class="mt-2 ml-1 text-sm text-red-600 font-medium flex items-center gap-2">
                             <svg class="w-4 h-4 text-red-600 dark:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -104,11 +108,11 @@
                 </form>
             </div>
             <div class="bg-white p-4 sm:p-6 rounded border w-full lg:w-1/2">
-                <label for="judul" class="block mb-2 font-medium text-gray-900">
+                <label for="preview" class="block mb-2 font-medium text-gray-900">
                     Preview File
                 </label>
                 <div class="w-full">
-                    <embed src="{{ asset('storage/'.$arsip->nama_file) }}" type="" class="w-full h-[600px]">
+                    <embed src="{{ asset('storage/'.$arsip->nama_file) }}" type="" class="w-full h-[540px]">
                 </div>
             </div>
         </section>
