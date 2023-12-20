@@ -8,18 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Post extends Model
 {
     use HasFactory;
-    // Nama tabel dalam database yang sesuai dengan model
+
     protected $table = 'posts';
-    // Kolom-kolom yang dapat diisi (fillable)
-    protected $fillable = [
-        'category_id',
-        'admin_id',
-        'judul',
-        'slug',
-        'gambar',
-        'isi',
-        'is_validated',
-    ];
+
+    protected $fillable = ['id'];
 
     public function category()
     {

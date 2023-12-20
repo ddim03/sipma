@@ -9,8 +9,14 @@
 @endpush
 
 @section('content')
-<section class="w-full md:w-4/5 px-3 md:px-0 pt-6 mx-auto max-w-screen-xl mt-20">
-    <h1 class="text-xl font-medium">Pencarian : <span>{{ $keyword }}</span></h1>
+<section class="w-full md:w-4/5 px-3 md:px-0 mx-auto max-w-screen-xl mt-24">
+    @if ($keyword != "all")
+    <h1 class="text-2xl font-bold text-gray-900"> Hasil Pencarian : <span>{{ $keyword }}</span></h1>
+    <p class="text-md text-gray-400">Pengumuman berdasarkan hasil pencarian</p>
+    @else
+    <h1 class="text-2xl font-bold text-gray-900"> Pengumuman Terbaru</span></h1>
+    <p class="text-md text-gray-400">Pengumuman yang baru saja dipublikasikan</p>
+    @endif
     @livewire('search-data')
 </section>
 @endsection

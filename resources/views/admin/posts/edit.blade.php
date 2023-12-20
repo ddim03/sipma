@@ -12,8 +12,8 @@
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="oldGambar" value="{{ $post->gambar }}">
-                        <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                            <div class="w-full">
+                        <div class="grid gap-4 grid-cols-1 lg:grid-cols-2 sm:gap-6">
+                            <div class="col-span-2 lg:col-span-1">
                                 <label for="judul" class="block mb-2 font-medium text-gray-900">
                                     Judul Pengumuman <span class="text-red-600">*</span>
                                 </label>
@@ -33,7 +33,7 @@
                                 </p>
                                 @enderror
                             </div>
-                            <div class="w-full">
+                            <div class="col-span-2 lg:col-span-1">
                                 <label for="slug" class="block mb-2 font-medium text-gray-900">
                                     Slug Pengumuman <span class="text-red-600">*</span>
                                 </label>
@@ -52,20 +52,20 @@
                                 </p>
                                 @enderror
                             </div>
-                            <div class="sm:col-span-2">
+                            <div class="col-span-2">
                                 <label for="isi" class="block mb-2 font-medium text-gray-900">
                                     Isi Pengumuman <span class="text-red-600">*</span>
                                 </label>
                                 <textarea id="isi" name="isi" class="w-full">{{ old('isi', $post->isi) }}</textarea>
                             </div>
-                            <div class="sm:col-span-2 flex flex-col-reverse sm:flex-row gap-4 items-end justify-center">
+                            <div class="col-span-2 flex flex-col-reverse lg:flex-row lg:gap-4 items-end justify-center">
                                 <div class="w-full">
                                     <label class="block mb-2 font-medium text-gray-900" for="gambar">
                                         Upload Gambar
                                     </label>
-                                    <div class="w-full relative">
+                                    <div class="w-full relative lg:h-48">
                                         <label for="gambar"
-                                            class="flex flex-col items-center justify-center w-full h-[239px] border-2 border-gray-300 border-dashed rounded cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                            class="flex flex-col items-center justify-center w-full lg:h-48 border-2 border-gray-300 border-dashed rounded cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                                 <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
                                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -103,7 +103,13 @@
                                         </label>
                                     </div>
                                 </div>
-                                <img src="{{ asset('storage/'.$post->gambar) }}" class="w-48 h-auto" alt="">
+                                <div class="w-full lg:w-auto mb-6 lg:mb-0">
+                                    <label class="block mb-2 font-medium text-gray-900" for="gambar">
+                                        Preview
+                                    </label>
+                                    <img src="{{ asset('storage/'.$post->gambar) }}" class="w-full lg:w-48 h-auto"
+                                        alt="">
+                                </div>
                             </div>
                         </div>
                         <div class="flex gap-3 mt-4 sm:mt-6">

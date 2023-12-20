@@ -8,12 +8,14 @@ use Livewire\Component;
 class SearchData extends Component
 {
 
-    public $keyword;
+    public $keyword = '';
 
     public function mount()
     {
         $getKeyword = explode('/', url()->current());
-        $this->keyword = end($getKeyword);
+        if (end($getKeyword) != "all") {
+            $this->keyword = end($getKeyword);
+        }
     }
 
     public function render()

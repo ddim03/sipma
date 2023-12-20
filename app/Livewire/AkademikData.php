@@ -6,8 +6,6 @@ use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-// use Livewire\WithPagination;
-
 class AkademikData extends Component
 {
 
@@ -19,5 +17,10 @@ class AkademikData extends Component
             ->where('judul', 'like', '%' . $this->search . '%')
             ->where('is_validated', 1)
             ->where('category_id', 1)->paginate(6)]);
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }

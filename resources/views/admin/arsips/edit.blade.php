@@ -6,8 +6,8 @@
 <main class="p-4 sm:ml-64 bg-gray-50 font-roboto min-h-screen">
     <div class="p-0 sm:p-4 mt-14">
         <h1 class="text-3xl font-bold text-slate-800 mt-20 sm:mt-0 mb-1.5">Update Arsip</h1>
-        <section class="mt-4 flex flex-col-reverse md:flex-row gap-2">
-            <div class="bg-white p-4 sm:p-6 rounded border w-full md:w-1/2">
+        <section class="mt-4 flex flex-col-reverse lg:flex-row gap-2">
+            <div class="bg-white p-4 sm:p-6 rounded border w-full lg:w-1/2">
                 <form action="{{ route('arsip.update', $arsip->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -103,7 +103,7 @@
                     </div>
                 </form>
             </div>
-            <div class="bg-white p-4 sm:p-6 rounded border w-full md:w-1/2">
+            <div class="bg-white p-4 sm:p-6 rounded border w-full lg:w-1/2">
                 <label for="judul" class="block mb-2 font-medium text-gray-900">
                     Preview File
                 </label>
