@@ -10,7 +10,7 @@
 
 @section('content')
 <section class="h-80 md:h-96 bg-[url('../img/hero.jpg')] bg-cover bg-center">
-    <div class="w-full h-80 md:h-96 bg-gray-900 bg-opacity-75 flex items-center ">
+    <div class="w-full h-80 md:h-96 bg-gray-950 bg-opacity-60 flex items-center ">
         <div class="w-11/12 sm:w-4/5 mx-auto">
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16" id="search">
                 <h1

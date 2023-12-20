@@ -17,4 +17,9 @@ class KemahasiswaanData extends Component
             ->where('is_validated', 1)
             ->where('category_id', 2)->paginate(6)]);
     }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 }

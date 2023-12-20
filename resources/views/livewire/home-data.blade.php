@@ -1,6 +1,6 @@
 <div>
     <section class="min-h-screen bg-[url('../img/hero.jpg')] bg-cover bg-center">
-        <div class="w-full h-screen bg-gray-900 bg-opacity-75 flex items-center ">
+        <div class="w-full h-screen bg-gray-950 bg-opacity-60 flex items-center ">
             <div class="w-11/12 sm:w-4/5 mx-auto">
                 <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16" id="search">
                     <h1
@@ -21,7 +21,7 @@
                                 </svg>
                             </div>
                             <input type="search" id="default-search" wire:model.live="search"
-                                class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                                class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-500 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Cari judul pengumuman...">
                         </div>
                     </div>
@@ -36,10 +36,10 @@
                 <p class="text-md text-gray-400">Pengumuman yang baru saja dipublikasikan</p>
             </div>
             @if (count($posts)>0)
-            <a href="" id="show-all"
+            <button type="button" id="show-all"
                 class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 Lihat semua
-            </a>
+            </button>
             @endif
         </div>
         <div class="w-full grid grid-cols-1 {{ count($posts) > 0 ? 'lg:grid-cols-2' : '' }} mt-5 mb-14 gap-3">

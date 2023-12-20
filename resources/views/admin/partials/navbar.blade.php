@@ -27,7 +27,7 @@
                                 <button type="button" class="flex text-sm items-center" aria-expanded="false"
                                     data-dropdown-toggle="dropdown-user">
                                     <span class="sr-only">Open user menu</span>
-                                    <p class="mr-3 text-gray-700 text-sm hidden lg:block font-medium mb-0">{{
+                                    <p class="mr-3 text-gray-700 text-sm hidden md:block font-medium mb-0">{{
                                         Auth::user()->nama }}</p>
                                     <img class="w-8 h-8 rounded-full" src="{{ Vite::asset('resources/img/user.svg') }}"
                                         alt="user photo">

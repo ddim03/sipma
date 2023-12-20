@@ -12,4 +12,9 @@ class HomeData extends Component
     {
         return view('livewire.home-data', ['posts' => Post::Latest()->where('judul', 'like', '%' . $this->search . '%')->where('is_validated', 1)->paginate(4)]);
     }
+
+    public function updatingSearch()
+    {
+        $this->reset();
+    }
 }

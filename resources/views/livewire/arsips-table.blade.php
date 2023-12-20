@@ -8,7 +8,7 @@
                         d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
             </div>
-            <input type="search" id="default-search" wire:model.live="search"
+            <input type="search" wire:model.live="search"
                 class=" w-full py-2.5 pl-10 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Cari nama arsip">
         </div>

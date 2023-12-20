@@ -14,4 +14,9 @@ class ArsipsTable extends Component
     {
         return view('livewire.arsips-table', ['arsips' => Arsip::where('nama', 'like', '%' . $this->search . '%')->paginate(6)]);
     }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 }
