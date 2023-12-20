@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-        \App\Models\Arsip::factory(10)->create();
-        \App\Models\Post::factory(10)->create();
+        // \App\Models\Arsip::factory(10)->create();
+        // \App\Models\Post::factory(10)->create();
     }
 }
