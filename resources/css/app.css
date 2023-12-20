@@ -6,6 +6,16 @@ html {
     scroll-behavior: smooth;
 }
 
+@layer base {
+    ul {
+        @apply ml-10 list-disc;
+    }
+
+    ol {
+        @apply ml-10 list-decimal;
+    }
+}
+
 @layer components {
     .active {
         @apply text-white bg-blue-700 md:text-blue-600 md:bg-transparent;

@@ -6,9 +6,9 @@ Tentang
 
 @section('content')
 <section class="min-h-screen bg-[url('../img/hero.jpg')] bg-cover bg-center">
-    <div class="w-full h-screen bg-gray-950 bg-opacity-60 flex items-center ">
+    <div class="w-full min-h-screen bg-gray-950 bg-opacity-60 flex items-center ">
         <div class="w-11/12 sm:w-4/5 mx-auto">
-            <div class="py-8 px-4 w-full lg:py-16 text-center md:text-start" id="search">
+            <div class="py-8 px-4 w-full lg:py-16 text-center md:text-start mt-32">
                 <h1 class="text-4xl font-bold text-white mb-2">
                     Sistem Informasi Pengumuman Mahasiswa dan Arsip
                 </h1>

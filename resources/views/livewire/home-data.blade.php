@@ -55,7 +55,7 @@
                     <div class="flex justify-around flex-col">
                         <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 md:truncate">{{ $post->judul }}
                         </h5>
-                        <div class="text-xs text-slate-500 mb-2">From {{ $post->admin->nama }}</div>
+                        <div class="text-xs text-slate-500 mb-3">From {{ $post->admin->nama }}</div>
                         <p class="mb-5 font-normal text-gray-700 te">{{ Str::limit(strip_tags($post->isi), 100) }}</p>
                     </div>
                     <div class="flex w-full justify-end text-xs text-slate-500">

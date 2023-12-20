@@ -20,6 +20,6 @@ class SearchData extends Component
 
     public function render()
     {
-        return view('livewire.search-data', ['posts' => Post::latest()->where('judul', 'like', '%' . $this->keyword . '%')->paginate(6)]);
+        return view('livewire.search-data', ['posts' => Post::latest()->where('is_validated', 1)->where('judul', 'like', '%' . $this->keyword . '%')->paginate(6)]);
     }
 }

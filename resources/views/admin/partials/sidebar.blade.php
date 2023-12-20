@@ -2,7 +2,7 @@
     class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0"
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white flex flex-col justify-between shadow">
-        <ul class="space-y-2 font-medium">
+        <ul class="space-y-2 font-medium list-none ml-0">
             <li>
                 <a href="/dashboard"
                     class="flex items-center p-2  {{ Request::is('dashboard') ? 'sidebar-active' : 'sidebar-base' }} rounded">
@@ -37,7 +37,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200">
+        <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 list-none ml-0">
             <li>
                 <form action="{{ url('logout') }}" method="post">
                     @csrf

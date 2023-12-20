@@ -18,7 +18,7 @@
 <body class="bg-gray-50">
     <header
         class="w-full fixed top-0 left-0 flex justify-center z-50 mx-auto bg-white font-roboto border border-b-gray-200 shadow-sm">
-        <div class="w-full lg:w-4/5">
+        <div class="w-full md:w-4/5">
             <nav>
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 sm:px-0 py-4">
                     <a href="" class="flex items-center">
@@ -38,7 +38,7 @@
                     </button>
                     <div class="hidden w-full md:block md:w-auto relative" id="navbar-default">
                         <ul
-                            class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+                            class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white list-none ml-0">
                             <li>
                                 <a href="/"
                                     class="block py-2 pl-3 pr-4 {{ Request::is('/') ? 'active' : 'base' }} rounded md:p-0"

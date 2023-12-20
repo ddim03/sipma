@@ -68,9 +68,9 @@ Update Pengumuman
                                     <label class="block mb-2 font-medium text-gray-900" for="gambar">
                                         Upload Gambar
                                     </label>
-                                    <div class="w-full relative lg:h-48">
+                                    <div class="w-full relative lg:h-52">
                                         <label for="gambar"
-                                            class="flex flex-col items-center justify-center w-full lg:h-48 border-2 border-gray-300 border-dashed rounded cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                            class="flex flex-col items-center justify-center w-full lg:h-52 border-2 border-gray-300 border-dashed rounded cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                                 <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
                                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -112,8 +112,7 @@ Update Pengumuman
                                     <label class="block mb-2 font-medium text-gray-900" for="gambar">
                                         Preview
                                     </label>
-                                    <img src="{{ asset('storage/'.$post->gambar) }}" class="w-full lg:w-48 h-auto"
-                                        alt="">
+                                    <img src="{{ asset('storage/'.$post->gambar) }}" class="w-full lg:w-48 h-52" alt="">
                                 </div>
                             </div>
                         </div>

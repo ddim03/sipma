@@ -13,7 +13,7 @@ class ValidatePost extends Component
 
     public function render()
     {
-        $posts = Post::where('judul', 'like', '%' . $this->search . '%')->paginate(6);
+        $posts = Post::latest()->where('judul', 'like', '%' . $this->search . '%')->paginate(6);
         return view('livewire.validate-post', ['posts' => $posts]);
     }
 
