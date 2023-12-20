@@ -13,7 +13,7 @@ class PostsTable extends Component
 
     public function render()
     {
-        $posts = Post::where('admin_id', auth()->user()->id)->where('judul', 'like', '%' . $this->search . '%')->paginate(6);
+        $posts = Post::latest()->where('admin_id', auth()->user()->id)->where('judul', 'like', '%' . $this->search . '%')->paginate(6);
         return view('livewire.posts-table', ['posts' => $posts]);
     }
 

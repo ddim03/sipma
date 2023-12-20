@@ -1,17 +1,21 @@
 @extends('layouts.main')
 
+@section('title')
+{{ $post->judul }}
+@endsection
+
 @section('content')
 <section class="h-80 bg-[url('../img/hero.jpg')] bg-cover bg-center">
     <div class="w-full h-80 bg-gray-900 bg-opacity-75"></div>
 </section>
 <section class="-mt-32 lg:-mt-36">
     <div class="w-11/12 sm:w-4/5 mx-auto bg-white flex flex-col lg:flex-row py-4 rounded border shadow">
-        <div class="w-full md:w-1/4 md:border-r-2 md:border-gray-200 flex justify-center px-4 mb-4 md:mb-0">
+        <div class="w-full lg:w-1/4 md:border-r-2 md:border-gray-200 flex justify-center px-4 mb-4 md:mb-0">
             <img src="{{ asset('storage/'.$post->gambar) }}" alt="{{ $post->judul }}"
-                class="w-full md:w-[300px] h-auto md:h-[330px] cursor-pointer" id="show-img">
+                class="w-full md:w-1/2 lg:w-full cursor-pointer aspect-[3/4] mb-4 lg:max-h-96" id="show-img">
         </div>
-        <div class="w-full md:w-3/4 px-4">
-            <h1 class="text-gray-700 font-bold text-3xl mb-2">
+        <div class="w-full lg:w-3/4 px-4">
+            <h1 class="text-gray-900 font-bold text-3xl mb-2">
                 {{ $post->judul }}
             </h1>
             <p class="text-sm text-gray-400 mb-2">{{ $post->created_at->format('l, d F Y') }} | From {{
