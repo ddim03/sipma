@@ -55,6 +55,7 @@ class AdminPostController extends Controller
         $validatedData['category_id'] = auth()->user()->id;
         $validatedData['admin_id'] = auth()->user()->id;
         $validatedData['gambar'] = $request->file('gambar')->store('images');
+        // dd($validatedData);
         Post::create($validatedData);
         return redirect()->route('post.index')->with('success', 'success');
     }
